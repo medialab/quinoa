@@ -1,0 +1,33 @@
+{
+  "name": "quinoa",
+  "version": "0.0.1",
+  "private": true,
+  "description": "Experimental rich editor.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/medialab/quinoa.git"
+  },
+  "keywords": [
+    "editor"
+  ],
+  "contributors": [
+    {
+      "name": "Guillaume Plique",
+      "url": "https://github.com/Yomguithereal"
+    }
+  ],
+  "license": "LGPL-3.0",
+  "bugs": {
+    "url": "https://github.com/medialab/quinoa/issues"
+  },
+  "homepage": "https://github.com/medialab/quinoa#readme",
+  "dependencies": {
+    "kotatsu": "^0.14.0",
+    "react": "^15.1.0",
+    "react-dom": "^15.1.0"
+  }
+}
