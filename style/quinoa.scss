@@ -1,0 +1,28 @@
+/**
+ * Quinoa Stylesheet
+ * ==================
+ */
+
+/**
+ * Layout.
+ */
+html, body, #mount, #mount > div {
+  height: 100%;
+}
+
+#editor-wrapper {
+  padding: 50px;
+  height: calc(100% - 100px);
+}
+
+/**
+ * Editor.
+ */
+#editor {
+  border: 1px solid black;
+  padding: 15px;
+  width: 300px;
+  height: 100%;
+
+  font-family: Monospace;
+}

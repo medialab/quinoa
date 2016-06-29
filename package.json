@@ -32,7 +32,6 @@
     "commonmark": "^0.25.1",
     "commonmark-react-renderer": "^4.1.4",
     "draft-js": "^0.7.0",
-    "kotatsu": "^0.14.0",
     "normalize.css": "^4.1.1",
     "react": "^15.1.0",
     "react-dom": "^15.1.0",
@@ -40,6 +39,9 @@
   },
   "devDependencies": {
     "css-loader": "^0.23.1",
+    "kotatsu": "^0.14.0",
+    "node-sass": "^3.8.0",
+    "sass-loader": "^4.0.0",
     "style-loader": "^0.13.1"
   }
 }

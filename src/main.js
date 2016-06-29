@@ -12,7 +12,7 @@ import Application from './containers/Application.js';
  * Style.
  */
 import 'normalize.css';
-import '../style/quinoa.css';
+import '../style/quinoa.scss';
 
 /**
  * Rendering logic.

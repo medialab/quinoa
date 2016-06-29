@@ -2,8 +2,12 @@ module.exports = {
   module: {
     loaders: [
       {
+        test: /\.scss$/,
+        loaders: ['style', 'css', 'sass']
+      },
+      {
         test: /\.css$/,
-        loader: 'style!css'
+        loaders: ['style', 'css']
       }
     ]
   }
