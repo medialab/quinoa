@@ -5,8 +5,7 @@
  * Component holding the Draft.js Markdown editor.
  */
 import React from 'react';
-import {Editor as Draft, EditorState, CompositeDecorator} from 'draft-js';
-import {withState} from 'recompose';
+import {Editor as Draft, CompositeDecorator} from 'draft-js';
 import {findall} from '../helpers';
 
 const BOLD_REGEX = /(\*\*|__)(.*?)\1/g;
@@ -32,19 +31,11 @@ const decorator = new CompositeDecorator([
   }
 ]);
 
-const enhance = withState(
-  'editorState',
-  'setEditorState',
-  EditorState.createEmpty(decorator)
-);
-
-export default enhance(function Editor(props) {
+export default function Editor(props) {
   const {
     editorState,
-    setEditorState
+    onChange
   } = props;
 
-  const onChange = nextEditorState => setEditorState(nextEditorState);
-
   return <Draft editorState={editorState} onChange={onChange} />;
-});
+}
