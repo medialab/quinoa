@@ -28,11 +28,9 @@ html, body, #mount, #mount > div {
 
   font-family: Monospace;
 
-  & > .DraftEditor-root {
-    height: 100%;
-  }
-
-  & .DraftEditor-content {
+  & .DraftEditor-root,
+  & .DraftEditor-editorContainer,
+  & .public-DraftEditor-content {
     height: 100%;
   }
 }
