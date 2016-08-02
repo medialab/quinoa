@@ -38,9 +38,9 @@ function Application({actions, store}) {
           <Editor onChange={actions.updateEditor}
                   editorState={store.draft} />
         </div>
-        <div id="preview">
+        {false && <div id="preview">
           <Preview markdown={store.markdown} />
-        </div>
+        </div>}
       </div>
     </div>
   );

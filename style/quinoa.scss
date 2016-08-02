@@ -12,9 +12,11 @@ html, body, #mount, #mount > div {
 
 #wrapper {
   position: relative;
-  padding: 25px;
-  height: calc(100% - 50px);
-  width: 0;
+  height: 100%;
+  top: 0;
+  left: 0;
+  padding: 0;
+  margin: 0;
 }
 
 /**
@@ -24,9 +26,12 @@ html, body, #mount, #mount > div {
   background: white;
   position: absolute;
   border: 1px solid black;
+  right: 25px;
+  top: 25px;
   padding: 15px;
-  width: 300px;
+  width: 450px;
   height: calc(100% - 75px);
+  z-index: 2;
 
   font-family: Monospace;
 
@@ -58,8 +63,11 @@ html, body, #mount, #mount > div {
   position: absolute;
   height: 100%;
   width: 100%;
+  z-index: 1;
 
-  & > #sigma-container, {
+  // Graph container
+  & > div,
+  & > div > #sigma-container, {
     position: absolute;
     height: 100%;
     width: 100%;
@@ -67,6 +75,19 @@ html, body, #mount, #mount > div {
     & > canvas {
       height: 100%;
       width: 100%;
+    }
+  }
+
+  // Controls
+  .controls {
+    position: absolute;
+    z-index: 3;
+    padding: 5px;
+
+    .control > button {
+      width: 30px;
+      height: 30px;
+      margin-bottom: 5px;
     }
   }
 }

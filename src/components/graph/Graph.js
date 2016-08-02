@@ -5,6 +5,7 @@
  * Component designed to handle the sigma graph.
  */
 import React, {Component} from 'react';
+import GraphControls from './GraphControls';
 
 /**
  * Constants.
@@ -13,7 +14,8 @@ const SIGMA_SETTINGS = {
   labelThreshold: 7,
   minNodeSize: 2,
   edgeColor: 'default',
-  defaultEdgeColor: '#D1D1D1'
+  defaultEdgeColor: '#D1D1D1',
+  sideMargin: 20
 };
 
 const LAYOUT_SETTINGS = {
@@ -24,27 +26,46 @@ const LAYOUT_SETTINGS = {
 };
 
 /**
+ * Sigma instance.
+ */
+const sigInst = new sigma({
+  settings: SIGMA_SETTINGS
+});
+
+const camera = sigInst.addCamera('main');
+
+/**
  * Graph component.
  */
 export default class Graph extends Component {
   componentDidMount() {
 
-    // Initializing sigma's instance
-    this.sigma = new sigma({
-      container: this.container,
-      settings: SIGMA_SETTINGS
+    // Adding the relevant renderer
+    this.renderer = sigInst.addRenderer({
+      camera: camera,
+      container: this.container
     });
 
+    // Loading the graph
     sigma.parsers.gexf(
       this.props.data,
-      this.sigma,
-      () => this.sigma.refresh()
+      sigInst,
+      () => sigInst.refresh()
     );
+  }
+
+  componentWillUnmount() {
+
+    // Killing the renderer
+    sigInst.killRenderer(this.renderer);
   }
 
   render() {
     return (
-      <div id="sigma-container" ref={div => this.container = div} />
+      <div>
+        <GraphControls camera={camera} />
+        <div id="sigma-container" ref={div => this.container = div} />
+      </div>
     );
   }
 }
