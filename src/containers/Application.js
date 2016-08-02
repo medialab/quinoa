@@ -9,6 +9,7 @@ import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import Editor from '../components/Editor';
 import Preview from '../components/Preview';
+import GraphLayout from '../components/graph/GraphLayout';
 import * as actions from '../actions';
 
 const mapStateToProps = state => {
@@ -29,6 +30,9 @@ const mapDispatchToProps = dispatch => {
 function Application({actions, store}) {
   return (
     <div>
+      <div id="graph">
+        <GraphLayout />
+      </div>
       <div id="wrapper">
         <div id="editor">
           <Editor onChange={actions.updateEditor}

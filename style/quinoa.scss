@@ -14,12 +14,14 @@ html, body, #mount, #mount > div {
   position: relative;
   padding: 25px;
   height: calc(100% - 50px);
+  width: 0;
 }
 
 /**
  * Editor.
  */
 #editor {
+  background: white;
   position: absolute;
   border: 1px solid black;
   padding: 15px;
@@ -35,7 +37,11 @@ html, body, #mount, #mount > div {
   }
 }
 
+/**
+ * Preview.
+ */
 #preview {
+  background: white;
   position: absolute;
   border: 1px solid black;
   padding: 15px;
@@ -43,4 +49,24 @@ html, body, #mount, #mount > div {
   height: calc(100% - 75px);
 
   left: 375px;
+}
+
+/**
+ * Graph.
+ */
+#graph {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+
+  & > #sigma-container, {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+
+    & > canvas {
+      height: 100%;
+      width: 100%;
+    }
+  }
 }

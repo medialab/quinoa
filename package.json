@@ -5,7 +5,7 @@
   "description": "Experimental rich editor.",
   "main": "index.js",
   "scripts": {
-    "dev": "kotatsu serve --config ./webpack.config.js --progress --babel --index ./index.html --public ./external ./src/main.js",
+    "dev": "kotatsu serve --config ./webpack.config.js --progress --babel --index ./index.html --public ./ ./src/main.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -27,6 +27,7 @@
   },
   "homepage": "https://github.com/medialab/quinoa#readme",
   "dependencies": {
+    "@yomguithereal/react-utilities": "^1.2.0",
     "commonmark": "^0.24.0",
     "commonmark-react-renderer": "^4.1.4",
     "draft-js": "^0.7.0",
@@ -47,7 +48,12 @@
     "style-loader": "^0.13.1"
   },
   "babel": {
-    "plugins": ["transform-object-rest-spread"],
-    "presets": ["es2015", "react"]
+    "plugins": [
+      "transform-object-rest-spread"
+    ],
+    "presets": [
+      "es2015",
+      "react"
+    ]
   }
 }
