@@ -4,12 +4,13 @@
  */
 import {EditorState} from 'draft-js';
 import {resolver} from '../helpers';
+import decorator from '../lib/decorator';
 import {
   EDITOR_CHANGE
 } from '../constants';
 
 const defaultState = {
-  draft: EditorState.createEmpty()
+  draft: EditorState.createEmpty(decorator)
 };
 
 export default resolver(defaultState, {
