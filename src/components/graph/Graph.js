@@ -18,12 +18,12 @@ const SIGMA_SETTINGS = {
   sideMargin: 20
 };
 
-const LAYOUT_SETTINGS = {
-  strongGravityMode: true,
-  gravity: 0.05,
-  scalingRatio: 10,
-  slowDown: 2
-};
+// const LAYOUT_SETTINGS = {
+//   strongGravityMode: true,
+//   gravity: 0.05,
+//   scalingRatio: 10,
+//   slowDown: 2
+// };
 
 /**
  * Sigma instance.
