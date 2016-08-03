@@ -7,6 +7,15 @@
 import React, {Component} from 'react';
 
 export default class GraphControls extends Component {
+  constructor(props, context) {
+    super(props, context);
+
+    // Binding methods for performance
+    this.rescale = this.rescale.bind(this);
+    this.zoom = this.zoom.bind(this);
+    this.unzoom = this.unzoom.bind(this);
+  }
+
   rescale() {
     const camera = this.props.camera;
 
@@ -49,13 +58,13 @@ export default class GraphControls extends Component {
   render() {
     return (
       <div className="controls">
-        <div className="control" onClick={() => this.zoom()}>
+        <div className="control" onClick={this.zoom}>
           <button>+</button>
         </div>
-        <div className="control" onClick={() => this.unzoom()}>
+        <div className="control" onClick={this.unzoom}>
           <button>-</button>
         </div>
-        <div className="control" onClick={() => this.rescale()}>
+        <div className="control" onClick={this.rescale}>
           <button>o</button>
         </div>
       </div>

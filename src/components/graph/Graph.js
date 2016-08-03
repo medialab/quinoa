@@ -42,8 +42,8 @@ export default class Graph extends Component {
 
     // Adding the relevant renderer
     this.renderer = sigInst.addRenderer({
-      camera: camera,
-      container: this.container
+      container: this.container,
+      camera
     });
 
     // Loading the graph
@@ -64,7 +64,7 @@ export default class Graph extends Component {
     return (
       <div>
         <GraphControls camera={camera} />
-        <div id="sigma-container" ref={div => this.container = div} />
+        <div id="sigma-container" ref={div => (this.container = div)} />
       </div>
     );
   }

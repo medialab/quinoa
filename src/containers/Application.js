@@ -10,7 +10,7 @@ import {connect} from 'react-redux';
 import Editor from '../components/Editor';
 import Preview from '../components/Preview';
 import GraphLayout from '../components/graph/GraphLayout';
-import * as actions from '../actions';
+import * as ACTIONS from '../actions';
 
 const mapStateToProps = state => {
   return {
@@ -23,7 +23,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    actions: bindActionCreators(actions, dispatch)
+    actions: bindActionCreators(ACTIONS, dispatch)
   };
 };
 
@@ -35,8 +35,9 @@ function Application({actions, store}) {
       </div>
       <div id="wrapper">
         <div id="editor">
-          <Editor onChange={actions.updateEditor}
-                  editorState={store.draft} />
+          <Editor
+            onChange={actions.updateEditor}
+            editorState={store.draft} />
         </div>
         {false && <div id="preview">
           <Preview markdown={store.markdown} />
