@@ -5,6 +5,7 @@
 import {EditorState, ContentState} from 'draft-js';
 import {resolver} from '../helpers';
 import decorator from '../lib/decorator';
+import tag from '../lib/tagger';
 import {
   EDITOR_CHANGE
 } from '../constants';
@@ -17,11 +18,15 @@ const defaultState = {
   draft: EditorState.createWithContent(content, decorator)
 };
 
+// TODO: only tag on relevant change
 export default resolver(defaultState, {
   [EDITOR_CHANGE]: (state, payload) => {
+
+    const taggedEditorState = tag(payload.draft);
+
     return {
       ...state,
-      draft: payload.draft
+      draft: taggedEditorState
     };
   }
 });

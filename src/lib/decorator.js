@@ -14,8 +14,8 @@ import {findall} from '../helpers';
  */
 
 // NOTE: those regexes are propbably not robust enough
-const BOLD_REGEX = /(\*\*|__)([^\1]+)\1/g,
-      EMPHASIS_REGEX = /([*_])([^\1]+)\1/g;
+const BOLD_REGEX = /(?:\*\*[^*]+\*\*|__[^_]+__)/g,
+      EMPHASIS_REGEX = /(\*)[^*]*?\1/g;
 
 /**
  * Helpers.
@@ -25,6 +25,9 @@ function createTextHighlighter(regex) {
     const text = contentBlock.getText();
 
     const matches = findall(regex, text);
+
+    if (!matches.length)
+      return;
 
     for (let i = 0, l = matches.length; i < l; i++) {
       const match = matches[i];
