@@ -15,7 +15,7 @@ import {
 function createSlide(data = {}) {
   return {
     id: uuid.v4(),
-    title: data.title || 'New slide',
+    title: data.title || '',
     markdown: data.markdown || '',
     meta: {}
   };

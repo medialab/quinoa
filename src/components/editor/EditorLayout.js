@@ -26,6 +26,7 @@ export default function EditorLayout(props) {
         <EditorSlide
           key={slide.id}
           id={slide.id}
+          title={slide.title}
           markdown={slide.markdown}
           update={updateSlide} />
       ))}

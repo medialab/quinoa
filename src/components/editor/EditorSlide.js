@@ -22,23 +22,43 @@ const CODEMIRROR_OPTIONS = {
  * Component.
  */
 const enhance = withHandlers({
-  onChange: props => markdown => {
+  onTitleChange: props => event => {
+    props.update(props.id, {title: event.target.value});
+  },
+  onMarkdownChange: props => markdown => {
     props.update(props.id, {markdown});
   }
 });
 
 export default enhance(function EditorSlide(props) {
   const {
+    title,
     markdown,
-    onChange
+    onTitleChange,
+    onMarkdownChange
   } = props;
 
   return (
     <div className="editor-slide">
-      <div className="editor-slide-title"># Title</div>
+      <div className="editor-slide-title">
+        <table>
+          <tbody>
+            <tr>
+              <td className="editor-slide-title-hashtag">#</td>
+              <td>
+                <textarea
+                  className="editor-slide-title-input"
+                  placeholder="Title of the slide..."
+                  onChange={onTitleChange}
+                  value={title} />
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
       <CodeMirror
         value={markdown}
-        onChange={onChange}
+        onChange={onMarkdownChange}
         options={CODEMIRROR_OPTIONS} />
     </div>
   );

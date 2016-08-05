@@ -40,7 +40,6 @@ html, body, #mount, #mount > div {
 
   & .editor-slide {
     padding: 5px;
-    border: 1px solid black;
     min-height: 50px;
     margin-bottom: 10px;
   }
@@ -48,6 +47,25 @@ html, body, #mount, #mount > div {
   & .editor-slide-title {
     border-bottom: 1px solid black;
     margin-bottom: 10px;
+
+    & table {
+      width: 100%;
+    }
+
+    & .editor-slide-title-hashtag {
+      vertical-align: top;
+    }
+
+    & .editor-slide-title-input {
+      border: none;
+      resize: none;
+      height: 1rem;
+      width: 100%;
+
+      &:focus {
+        outline: none;
+      }
+    }
   }
 
   & .editor-macro-button {
