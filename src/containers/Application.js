@@ -34,6 +34,7 @@ function Application({actions, store}) {
       <div id="wrapper">
         <div id="editor">
           <EditorLayout
+            addSlide={actions.addSlide}
             updateSlide={actions.updateSlide}
             slides={store.slides} />
         </div>

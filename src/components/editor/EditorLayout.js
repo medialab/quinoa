@@ -7,7 +7,18 @@
 import React from 'react';
 import EditorSlide from './EditorSlide';
 
-export default function EditorLayout({slides, updateSlide}) {
+function EditorAddSlideButton({addSlide}) {
+  return (
+    <button className="editor-macro-button" onClick={addSlide}>Add Slide</button>
+  );
+}
+
+export default function EditorLayout(props) {
+  const {
+    slides,
+    addSlide,
+    updateSlide
+  } = props;
 
   return (
     <div>
@@ -18,6 +29,7 @@ export default function EditorLayout({slides, updateSlide}) {
           markdown={slide.markdown}
           update={updateSlide} />
       ))}
+      <EditorAddSlideButton addSlide={addSlide} />
     </div>
   );
 }

@@ -34,14 +34,34 @@ html, body, #mount, #mount > div {
   z-index: 2;
   font-family: 'Fira Mono', Monospace;
 
+  & > div {
+    height: 100%;
+  }
+
   & .editor-slide {
     padding: 5px;
     border: 1px solid black;
+    min-height: 50px;
+    margin-bottom: 10px;
   }
 
   & .editor-slide-title {
     border-bottom: 1px solid black;
     margin-bottom: 10px;
+  }
+
+  & .editor-macro-button {
+    width: 100%;
+    margin-top: 10px;
+    background: none;
+    border: 1px solid black;
+    cursor: pointer;
+    padding: 5px;
+
+    &:active {
+      background: black;
+      color: white;
+    }
   }
 }
 

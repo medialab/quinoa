@@ -8,8 +8,15 @@
   padding: 0;
   font-size: 12px;
   height: auto;
-  min-height: 100px;
   color: black;
+}
+
+.CodeMirror-scroll, .CodeMirror-sizer, .CodeMirror-lines {
+  min-height: 50px;
+}
+
+.CodeMirror-empty {
+  color: gray;
 }
 
 .cm-s-default .cm-header {color: blue;}

@@ -20,9 +20,10 @@ import '../style/codemirror-theme.css';
 import '../style/quinoa.scss';
 
 /**
- * CodeMirror modes.
+ * CodeMirror extensions.
  */
 import 'codemirror/mode/markdown/markdown';
+import 'codemirror/addon/display/placeholder';
 
 /**
  * Store logic.

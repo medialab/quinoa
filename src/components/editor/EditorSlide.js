@@ -12,7 +12,10 @@ import withHandlers from 'recompose/withHandlers';
  * CodeMirror options.
  */
 const CODEMIRROR_OPTIONS = {
-  mode: 'markdown'
+  mode: 'markdown',
+  placeholder: 'Text...',
+  viewportMargin: Infinity,
+  lineWrapping: true
 };
 
 /**

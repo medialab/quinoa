@@ -6,4 +6,5 @@
 /**
  * Action types.
  */
-export const SLIDE_CHANGE = '§Editor/SlideChange';
+export const EDITOR_ADD_SLIDE = '§Editor/AddSlide'
+export const EDITOR_UPDATE_SLIDE = '§Editor/UpdateSlide';
