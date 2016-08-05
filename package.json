@@ -29,11 +29,12 @@
   "homepage": "https://github.com/medialab/quinoa#readme",
   "dependencies": {
     "@yomguithereal/react-utilities": "^1.2.0",
+    "codemirror": "^5.17.0",
     "commonmark": "^0.24.0",
     "commonmark-react-renderer": "^4.1.4",
-    "draft-js": "^0.7.0",
     "normalize.css": "^4.1.1",
     "react": "^15.1.0",
+    "react-codemirror": "^0.2.6",
     "react-dom": "^15.1.0",
     "react-redux": "^4.4.5",
     "recompose": "^0.20.2",

@@ -15,6 +15,8 @@ import reducers from './reducers';
  * Style.
  */
 import 'normalize.css';
+import 'codemirror/lib/codemirror.css';
+import '../style/codemirror-theme.css';
 import '../style/quinoa.scss';
 
 /**

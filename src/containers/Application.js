@@ -7,16 +7,14 @@
 import React from 'react';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
-import Editor from '../components/Editor';
-import Preview from '../components/Preview';
+import EditorLayout from '../components/editor/EditorLayout';
 import GraphLayout from '../components/graph/GraphLayout';
 import * as ACTIONS from '../actions';
 
 const mapStateToProps = state => {
   return {
     store: {
-      draft: state.editor.draft,
-      markdown: state.editor.draft.getCurrentContent().getPlainText()
+      text: state.editor.text
     }
   };
 };
@@ -35,13 +33,10 @@ function Application({actions, store}) {
       </div>
       <div id="wrapper">
         <div id="editor">
-          <Editor
+          <EditorLayout
             onChange={actions.updateEditor}
-            editorState={store.draft} />
+            text={store.text} />
         </div>
-        {false && <div id="preview">
-          <Preview markdown={store.markdown} />
-        </div>}
       </div>
     </div>
   );

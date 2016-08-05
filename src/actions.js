@@ -6,6 +6,6 @@ import {
   EDITOR_CHANGE
 } from './constants';
 
-export function updateEditor(draft) {
-  return {type: EDITOR_CHANGE, draft};
+export function updateEditor(text) {
+  return {type: EDITOR_CHANGE, text};
 }

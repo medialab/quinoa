@@ -33,13 +33,7 @@ html, body, #mount, #mount > div {
   height: calc(100% - 75px);
   z-index: 2;
 
-  font-family: Monospace;
-
-  & .DraftEditor-root,
-  & .DraftEditor-editorContainer,
-  & .public-DraftEditor-content {
-    height: 100%;
-  }
+  font-family: 'Fira Mono', Monospace;
 }
 
 /**
