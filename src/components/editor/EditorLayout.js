@@ -2,28 +2,22 @@
  * Quinoa Editor Component
  * ========================
  *
- * Component holding the Draft.js Markdown editor.
+ * Component organizing the different slide editors.
  */
 import React from 'react';
-import CodeMirror from 'react-codemirror';
+import EditorSlide from './EditorSlide';
 
-// Importing the relevant mode
-import 'codemirror/mode/markdown/markdown';
-
-const CODEMIRROR_OPTIONS = {
-  mode: 'markdown'
-};
-
-export default function Editor(props) {
-  const {
-    text,
-    onChange
-  } = props;
+export default function EditorLayout({slides, updateSlide}) {
 
   return (
-    <CodeMirror
-      value={text}
-      onChange={onChange}
-      options={CODEMIRROR_OPTIONS} />
+    <div>
+      {slides.map(slide => (
+        <EditorSlide
+          key={slide.id}
+          id={slide.id}
+          markdown={slide.markdown}
+          update={updateSlide} />
+      ))}
+    </div>
   );
 }

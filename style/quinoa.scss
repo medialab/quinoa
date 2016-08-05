@@ -32,8 +32,17 @@ html, body, #mount, #mount > div {
   width: 450px;
   height: calc(100% - 75px);
   z-index: 2;
-
   font-family: 'Fira Mono', Monospace;
+
+  & .editor-slide {
+    padding: 5px;
+    border: 1px solid black;
+  }
+
+  & .editor-slide-title {
+    border-bottom: 1px solid black;
+    margin-bottom: 10px;
+  }
 }
 
 /**

@@ -2,23 +2,62 @@
  * Quinoa Editor Reducer
  * ======================
  */
+import uuid from 'uuid';
 import {resolver} from '../helpers';
 import {
-  EDITOR_CHANGE
+  SLIDE_CHANGE
 } from '../constants';
 
-const TEMP_DEFAULT_TEXT = '# First slide\n```\nmeta: value\n```\n\nThis is some **bold** and *emphasized* text...';
+/**
+ * Helpers.
+ */
+function createSlide(data = {}) {
+  return {
+    id: uuid.v4(),
+    title: data.title || '',
+    markdown: data.text || '',
+    meta: {}
+  };
+}
+
+/**
+ * Defaults.
+ */
+const DEFAULT_TEXT = 'This is some **bold** and *emphasized* text...',
+      DEFAULT_SLIDE = createSlide({markdown: DEFAULT_TEXT});
 
 const defaultState = {
-  text: TEMP_DEFAULT_TEXT
+  current: DEFAULT_SLIDE.id,
+  slides: {
+    [DEFAULT_SLIDE.id]: DEFAULT_SLIDE
+  },
+  order: [DEFAULT_SLIDE.id]
 };
 
+/**
+ * Reducer.
+ */
 export default resolver(defaultState, {
-  [EDITOR_CHANGE]: (state, payload) => {
 
+  /**
+   * A slide's data was updated.
+   */
+  [SLIDE_CHANGE]: (state, {id, data}) => {
+    const currentSlide = state.slides[id];
+
+    // Merging current slide's data & payload's
+    const updatedSlide = {
+      ...currentSlide,
+      ...data
+    };
+
+    // Updating state
     return {
       ...state,
-      text: payload.text
+      slides: {
+        ...state.slides,
+        [id]: updatedSlide
+      }
     };
   }
 });

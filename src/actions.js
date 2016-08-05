@@ -3,9 +3,9 @@
  * =======================
  */
 import {
-  EDITOR_CHANGE
+  SLIDE_CHANGE
 } from './constants';
 
-export function updateEditor(text) {
-  return {type: EDITOR_CHANGE, text};
+export function updateSlide(id, data) {
+  return {type: SLIDE_CHANGE, id, data};
 }

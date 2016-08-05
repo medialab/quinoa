@@ -20,9 +20,17 @@ import '../style/codemirror-theme.css';
 import '../style/quinoa.scss';
 
 /**
+ * CodeMirror modes.
+ */
+import 'codemirror/mode/markdown/markdown';
+
+/**
  * Store logic.
  */
 const store = createStore(reducers, {}, window.devToolsExtension && window.devToolsExtension());
+
+// TODO: Remove debug logic
+window.store = store;
 
 /**
  * Rendering logic.
