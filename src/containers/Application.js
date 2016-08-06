@@ -36,6 +36,7 @@ function Application({actions, store}) {
           <EditorLayout
             addSlide={actions.addSlide}
             updateSlide={actions.updateSlide}
+            moveSlide={actions.moveSlide}
             slides={store.slides} />
         </div>
       </div>

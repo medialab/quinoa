@@ -6,7 +6,8 @@ import uuid from 'uuid';
 import {resolver} from '../helpers';
 import {
   EDITOR_ADD_SLIDE,
-  EDITOR_UPDATE_SLIDE
+  EDITOR_UPDATE_SLIDE,
+  EDITOR_MOVE_SLIDE
 } from '../constants';
 
 /**
@@ -26,12 +27,15 @@ function createSlide(data = {}) {
  */
 const DEFAULT_SLIDE = createSlide();
 
+const TEMP_SECOND_SLIDE = createSlide({title: 'Second slide'});
+
 const defaultState = {
   current: DEFAULT_SLIDE.id,
   slides: {
-    [DEFAULT_SLIDE.id]: DEFAULT_SLIDE
+    [DEFAULT_SLIDE.id]: DEFAULT_SLIDE,
+    [TEMP_SECOND_SLIDE.id]: TEMP_SECOND_SLIDE
   },
-  order: [DEFAULT_SLIDE.id]
+  order: [DEFAULT_SLIDE.id, TEMP_SECOND_SLIDE.id]
 };
 
 /**
@@ -76,6 +80,22 @@ export default resolver(defaultState, {
         ...state.slides,
         [id]: updatedSlide
       }
+    };
+  },
+
+  /**
+   * A slide was moved.
+   */
+  [EDITOR_MOVE_SLIDE]: (state, {indexBefore, indexAfter}) => {
+    const id = state.order[indexBefore];
+
+    let order = state.order.slice();
+    order.splice(indexBefore, 1);
+    order.splice(indexAfter, 0, id);
+
+    return {
+      ...state,
+      order
     };
   }
 });

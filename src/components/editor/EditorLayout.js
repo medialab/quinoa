@@ -4,8 +4,12 @@
  *
  * Component organizing the different slide editors.
  */
-import React from 'react';
+import React, {Component} from 'react';
+import {DragDropContext} from 'react-dnd';
+import HTML5Backend from 'react-dnd-html5-backend';
 import EditorSlide from './EditorSlide';
+
+const context = DragDropContext(HTML5Backend);
 
 function EditorAddSlideButton({addSlide}) {
   return (
@@ -13,24 +17,29 @@ function EditorAddSlideButton({addSlide}) {
   );
 }
 
-export default function EditorLayout(props) {
-  const {
-    slides,
-    addSlide,
-    updateSlide
-  } = props;
+export default context(class EditorLayout extends Component {
+  render() {
+    const {
+      slides,
+      addSlide,
+      updateSlide,
+      moveSlide
+    } = this.props;
 
-  return (
-    <div>
-      {slides.map(slide => (
-        <EditorSlide
-          key={slide.id}
-          id={slide.id}
-          title={slide.title}
-          markdown={slide.markdown}
-          update={updateSlide} />
-      ))}
-      <EditorAddSlideButton addSlide={addSlide} />
-    </div>
-  );
-}
+    return (
+      <div>
+        {slides.map((slide, index) => (
+          <EditorSlide
+            index={index}
+            key={slide.id}
+            id={slide.id}
+            title={slide.title}
+            markdown={slide.markdown}
+            update={updateSlide}
+            move={moveSlide} />
+        ))}
+        <EditorAddSlideButton addSlide={addSlide} />
+      </div>
+    );
+  }
+});
