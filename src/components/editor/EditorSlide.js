@@ -45,7 +45,6 @@ const enhance = compose(
 
 export default enhance(function EditorSlide(props) {
   const {
-    index,
     title,
     markdown,
     isCurrent,
@@ -57,7 +56,6 @@ export default enhance(function EditorSlide(props) {
 
     onTitleChange,
     onMarkdownChange,
-    onMove,
     onSelect
   } = props;
 

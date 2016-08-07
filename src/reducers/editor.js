@@ -108,7 +108,7 @@ export default resolver(defaultState, {
   [EDITOR_MOVE_SLIDE]: (state, {indexBefore, indexAfter}) => {
     const id = state.order[indexBefore];
 
-    let order = state.order.slice();
+    const order = state.order.slice();
     order.splice(indexBefore, 1);
     order.splice(indexAfter, 0, id);
 

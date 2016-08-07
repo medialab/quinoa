@@ -1,10 +1,10 @@
+/* eslint react/no-find-dom-node: 0 */
 /**
  * Quinoa Editor Draggable HOC
  * =============================
  *
  * HOC used to make the slide components draggable.
  */
-import React, {Component} from 'react';
 import {findDOMNode} from 'react-dom';
 import {DragSource, DropTarget} from 'react-dnd';
 import compose from 'recompose/compose';

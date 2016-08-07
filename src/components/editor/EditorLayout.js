@@ -1,3 +1,4 @@
+/* eslint react/prefer-stateless-function: 0 */
 /**
  * Quinoa Editor Component
  * ========================
@@ -11,7 +12,7 @@ import EditorSlide from './EditorSlide';
 
 const context = DragDropContext(HTML5Backend);
 
-function EditorAddSlideButton({addSlide}) {
+function EditorAddSlideButton({addSlide}) {
   return (
     <button className="editor-macro-button" onClick={addSlide}>Add Slide</button>
   );
