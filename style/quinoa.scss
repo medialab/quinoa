@@ -33,6 +33,7 @@ html, body, #mount, #mount > div {
   height: calc(100% - 75px);
   z-index: 2;
   font-family: 'Fira Mono', Monospace;
+  overflow-y: scroll;
 
   & > div {
     height: 100%;
@@ -42,7 +43,11 @@ html, body, #mount, #mount > div {
     padding: 5px;
     min-height: 50px;
     margin-bottom: 10px;
-    border: 1px solid black;
+    border: 1px solid transparent;
+
+    &.selected {
+      border: 1px solid black;
+    }
   }
 
   & .editor-slide-title {

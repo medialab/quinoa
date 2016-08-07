@@ -5,6 +5,7 @@
 import uuid from 'uuid';
 import {resolver} from '../helpers';
 import {
+  EDITOR_SELECT_SLIDE,
   EDITOR_ADD_SLIDE,
   EDITOR_UPDATE_SLIDE,
   EDITOR_MOVE_SLIDE
@@ -42,6 +43,16 @@ const defaultState = {
  * Reducer.
  */
 export default resolver(defaultState, {
+
+  /**
+   * A slide was selected.
+   */
+  [EDITOR_SELECT_SLIDE]: (state, {id}) => {
+    return {
+      ...state,
+      current: id
+    };
+  },
 
   /**
    * A slide was added.

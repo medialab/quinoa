@@ -20,10 +20,9 @@ function EditorAddSlideButton({addSlide}) {
 export default context(class EditorLayout extends Component {
   render() {
     const {
+      current,
       slides,
-      addSlide,
-      updateSlide,
-      moveSlide
+      actions
     } = this.props;
 
     return (
@@ -35,10 +34,12 @@ export default context(class EditorLayout extends Component {
             id={slide.id}
             title={slide.title}
             markdown={slide.markdown}
-            update={updateSlide}
-            move={moveSlide} />
+            isCurrent={slide.id === current}
+            select={actions.selectSlide}
+            update={actions.updateSlide}
+            move={actions.moveSlide} />
         ))}
-        <EditorAddSlideButton addSlide={addSlide} />
+        <EditorAddSlideButton addSlide={actions.addSlide} />
       </div>
     );
   }

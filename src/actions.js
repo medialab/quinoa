@@ -3,10 +3,18 @@
  * =======================
  */
 import {
+  EDITOR_SELECT_SLIDE,
   EDITOR_ADD_SLIDE,
   EDITOR_UPDATE_SLIDE,
   EDITOR_MOVE_SLIDE
 } from './constants';
+
+/**
+ * Selecting a new slide.
+ */
+export function selectSlide(id) {
+  return {type: EDITOR_SELECT_SLIDE, id};
+}
 
 /**
  * Adding a new slide.

@@ -8,6 +8,7 @@ import React from 'react';
 import CodeMirror from 'react-codemirror';
 import withHandlers from 'recompose/withHandlers';
 import compose from 'recompose/compose';
+import cls from 'classnames';
 import draggable from './draggable';
 
 /**
@@ -33,6 +34,10 @@ const enhance = compose(
     },
     onMove: props => (indexBefore, indexAfter) => {
       props.move(props.id, indexBefore, indexAfter);
+    },
+    onSelect: props => () => {
+      if (!props.isCurrent)
+        props.select(props.id);
     }
   }),
   draggable
@@ -43,19 +48,26 @@ export default enhance(function EditorSlide(props) {
     index,
     title,
     markdown,
+    isCurrent,
+
     isDragging,
     connectDragPreview,
     connectDragSource,
     connectDropTarget,
+
     onTitleChange,
     onMarkdownChange,
-    onMove
+    onMove,
+    onSelect
   } = props;
 
   const opacity = isDragging ? 0 : 1;
 
   return connectDragPreview(connectDropTarget(
-    <div className="editor-slide" style={{opacity}}>
+    <div
+      className={cls('editor-slide', {selected: isCurrent})}
+      style={{opacity}}
+      onClick={onSelect}>
       <div className="editor-slide-title">
         <table>
           <tbody>

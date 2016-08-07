@@ -14,6 +14,7 @@ import * as ACTIONS from '../actions';
 const mapStateToProps = state => {
   return {
     store: {
+      current: state.editor.current,
       slides: state.editor.order.map(id => state.editor.slides[id])
     }
   };
@@ -34,10 +35,9 @@ function Application({actions, store}) {
       <div id="wrapper">
         <div id="editor">
           <EditorLayout
-            addSlide={actions.addSlide}
-            updateSlide={actions.updateSlide}
-            moveSlide={actions.moveSlide}
-            slides={store.slides} />
+            current={store.current}
+            slides={store.slides}
+            actions={actions} />
         </div>
       </div>
     </div>
