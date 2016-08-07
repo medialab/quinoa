@@ -12,10 +12,10 @@ html, body, #mount, #mount > div {
 
 #wrapper {
   position: relative;
-  height: 100%;
+  height: calc(100% - 20px);
   top: 0;
   left: 0;
-  padding: 0;
+  padding: 10px;
   margin: 0;
 }
 
@@ -26,11 +26,10 @@ html, body, #mount, #mount > div {
   background: white;
   position: absolute;
   border: 1px solid black;
-  right: 25px;
-  top: 25px;
+  left: calc(65% + 25px);
   padding: 15px;
-  width: 450px;
-  height: calc(100% - 75px);
+  width: calc(35% - 60px);
+  height: calc(100% - 70px);
   z-index: 2;
   font-family: 'Fira Mono', Monospace;
   overflow-y: scroll;
@@ -108,8 +107,9 @@ html, body, #mount, #mount > div {
  */
 #graph {
   position: absolute;
-  height: 100%;
-  width: 100%;
+  border: 1px solid black;
+  height: calc(100% - 40px);
+  width: 65%;
   z-index: 1;
 
   // Graph container

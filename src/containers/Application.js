@@ -29,10 +29,10 @@ const mapDispatchToProps = dispatch => {
 function Application({actions, store}) {
   return (
     <div>
-      <div id="graph">
-        <GraphLayout />
-      </div>
       <div id="wrapper">
+        <div id="graph">
+          <GraphLayout />
+        </div>
         <div id="editor">
           <EditorLayout
             current={store.current}
