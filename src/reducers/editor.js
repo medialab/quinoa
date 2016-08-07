@@ -3,6 +3,7 @@
  * ======================
  */
 import uuid from 'uuid';
+import merge from 'lodash/merge';
 import {resolver} from '../helpers';
 import {
   EDITOR_SELECT_SLIDE,
@@ -14,12 +15,22 @@ import {
 /**
  * Helpers.
  */
+
+// TODO: enable the user to provide this factory at least for meta.
+// TODO: enable the user to create a new slide based on the current one?
 function createSlide(data = {}) {
   return {
     id: uuid.v4(),
     title: data.title || '',
     markdown: data.markdown || '',
-    meta: {}
+    meta: {
+      camera: {
+        x: 0,
+        y: 0,
+        angle: 0,
+        ratio: 1
+      }
+    }
   };
 }
 
@@ -79,10 +90,7 @@ export default resolver(defaultState, {
     const currentSlide = state.slides[id];
 
     // Merging current slide's data & payload's
-    const updatedSlide = {
-      ...currentSlide,
-      ...data
-    };
+    const updatedSlide = merge({}, currentSlide, data);
 
     // Updating state
     return {

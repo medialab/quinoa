@@ -19,10 +19,19 @@ const fetcherReducer = string => {
   return parser.parseFromString(string, 'application/xml');
 };
 
-export default function GraphLayout() {
+export default function GraphLayout(props) {
+  const {
+    actions,
+    camera,
+    current,
+  } = props;
+
   return (
     <Fetcher params={fetcherParams} reducer={fetcherReducer} >
-      <Graph />
+      <Graph
+        camera={camera}
+        current={current}
+        update={actions.updateSlide} />
     </Fetcher>
   );
 }

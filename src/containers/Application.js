@@ -12,10 +12,13 @@ import GraphLayout from '../components/graph/GraphLayout';
 import * as ACTIONS from '../actions';
 
 const mapStateToProps = state => {
+  const editor = state.editor;
+
   return {
     store: {
-      current: state.editor.current,
-      slides: state.editor.order.map(id => state.editor.slides[id])
+      current: editor.current,
+      currentSlide: editor.slides[editor.current],
+      slides: editor.order.map(id => editor.slides[id])
     }
   };
 };
@@ -31,7 +34,10 @@ function Application({actions, store}) {
     <div>
       <div id="wrapper">
         <div id="graph">
-          <GraphLayout />
+          <GraphLayout
+            current={store.current}
+            camera={store.currentSlide.meta.camera}
+            actions={actions} />
         </div>
         <div id="editor">
           <EditorLayout
