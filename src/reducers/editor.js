@@ -25,7 +25,7 @@ function createSlide(data = {}) {
 /**
  * Defaults.
  */
-const DEFAULT_SLIDE = createSlide();
+const DEFAULT_SLIDE = createSlide({title: 'First slide'});
 
 const TEMP_SECOND_SLIDE = createSlide({title: 'Second slide'});
 

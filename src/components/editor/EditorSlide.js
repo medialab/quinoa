@@ -43,6 +43,7 @@ export default enhance(function EditorSlide(props) {
     index,
     title,
     markdown,
+    isDragging,
     connectDragPreview,
     connectDragSource,
     connectDropTarget,
@@ -51,8 +52,10 @@ export default enhance(function EditorSlide(props) {
     onMove
   } = props;
 
+  const opacity = isDragging ? 0 : 1;
+
   return connectDragPreview(connectDropTarget(
-    <div className="editor-slide">
+    <div className="editor-slide" style={{opacity}}>
       <div className="editor-slide-title">
         <table>
           <tbody>
