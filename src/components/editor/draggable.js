@@ -1,8 +1,8 @@
 /**
- * Quinoa Editor Draggable Component
- * ==================================
+ * Quinoa Editor Draggable HOC
+ * =============================
  *
- * Component used to wrap the slide components and make them sortable.
+ * HOC used to make the slide components draggable.
  */
 import React, {Component} from 'react';
 import {findDOMNode} from 'react-dom';
@@ -69,20 +69,10 @@ const enhance = compose(
     connectDropTarget: connect.dropTarget()
   })),
   DragSource('SLIDE', source, (connect, monitor) => ({
+    connectDragPreview: connect.dragPreview(),
     connectDragSource: connect.dragSource(),
     isDragging: monitor.isDragging()
   }))
 );
 
-export default enhance(class EditorDraggable extends Component {
-  render() {
-    const {
-      children,
-      isDragging,
-      connectDragSource,
-      connectDropTarget
-    } = this.props;
-
-    return connectDragSource(connectDropTarget(children));
-  }
-});
+export default enhance;
