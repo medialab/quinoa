@@ -11,11 +11,6 @@ import QuinoaEditor from './containers/QuinoaEditor';
 export default function createComponent(store) {
   let EditorComponent = QuinoaEditor;
 
-  // Handling hot-reloading
-  module.hot.accept('./containers/QuinoaEditor', function() {
-    EditorComponent = require('./containers/QuinoaEditor').default;
-  });
-
   return class WrappedQuinoaEditor extends Component {
     render() {
       return (

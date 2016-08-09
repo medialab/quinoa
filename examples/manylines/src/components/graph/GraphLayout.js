@@ -1,6 +1,6 @@
 /**
- * Quinoa Graph Layout Component
- * ==============================
+ * Graph Layout Component
+ * =======================
  *
  * Component responsible for rendering the layout holding the graph handled
  * by Quinoa editor.

@@ -1,6 +1,6 @@
 /**
- * Quinoa Graph Controls Component
- * ================================
+ * Graph Controls Component
+ * =========================
  *
  * Component rendering the graph's controls such as camera zoom & pan.
  */

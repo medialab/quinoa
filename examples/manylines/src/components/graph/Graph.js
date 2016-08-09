@@ -1,6 +1,6 @@
 /**
- * Quinoa Graph Component
- * =======================
+ * Graph Component
+ * ================
  *
  * Component designed to handle the sigma graph.
  */

@@ -1,0 +1,57 @@
+/**
+ * Quinoa Stylesheet
+ * ==================
+ */
+
+/**
+ * Layout.
+ */
+html, body, #mount, #mount > div {
+  height: 100%;
+}
+
+#wrapper {
+  position: relative;
+  height: calc(100% - 20px);
+  top: 0;
+  left: 0;
+  padding: 10px;
+  margin: 0;
+}
+
+/**
+ * Graph.
+ */
+#graph {
+  position: absolute;
+  border: 1px solid black;
+  height: calc(100% - 40px);
+  width: 65%;
+  z-index: 1;
+
+  // Graph container
+  & > div,
+  & > div > #sigma-container, {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+
+    & > canvas {
+      height: 100%;
+      width: 100%;
+    }
+  }
+
+  // Controls
+  .controls {
+    position: absolute;
+    z-index: 3;
+    padding: 5px;
+
+    .control > button {
+      width: 30px;
+      height: 30px;
+      margin-bottom: 5px;
+    }
+  }
+}

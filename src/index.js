@@ -6,7 +6,6 @@
  * implement its own quinoa editor in any webpage.
  */
 import React from 'react';
-import {render} from 'react-dom';
 import {bindActionCreators, createStore} from 'redux';
 import * as actions from './actions';
 import reducers from './reducers';
@@ -37,18 +36,46 @@ export default class Quinoa {
     );
 
     // Handling hot reloading
-    module.hot.accept('./reducers', () => {
-      const nextReducers = require('./reducers').default;
-      this.store.replaceReducer(nextReducers);
-    });
+    if (module.hot) {
+      module.hot.accept('./reducers', () => {
+        const nextReducers = require('./reducers').default;
+        this.store.replaceReducer(nextReducers);
 
-    module.hot.accept('./actions', () => {
-      const nextActions = require('./actions');
-      this.actions = bindActionCreators(
-        nextActions,
-        this.store.dispatch
-      );
-    });
+        this.fireHotUpdate();
+      });
+
+      module.hot.accept('./createComponent', () => {
+        const nextFn = require('./createComponent').default;
+        this.component = nextFn(this.store);
+
+        this.fireHotUpdate();
+      });
+
+      module.hot.accept('./actions', () => {
+        const nextActions = require('./actions');
+        this.actions = bindActionCreators(
+          nextActions,
+          this.store.dispatch
+        );
+
+        this.fireHotUpdate();
+      });
+
+      // Handy hot-reloading subscriber
+      let callback;
+
+      this.hot = fn => {
+        callback = fn;
+        return () => {
+          callback = null;
+        };
+      };
+
+      this.fireHotUpdate = () => {
+        if (typeof callback === 'function')
+          callback();
+      };
+    }
   }
 
   /**
@@ -76,17 +103,5 @@ export default class Quinoa {
    */
   getComponent() {
     return this.component;
-  }
-
-  /**
-   * Method used to render the editor in a non-React application.
-   *
-   * @return {Quinoa} - Returns itself for chaining purposes.
-   */
-  render(mountNode) {
-    const element = React.createElement(this.component);
-
-    render(element, mountNode);
-    return this;
   }
 }
