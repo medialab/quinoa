@@ -33,39 +33,36 @@ describe('parsers/markdown', function() {
       Beware of what you wish for.
     `;
 
-    const expectedState = {
-      slides: {
-        'one': {
-          id: 'one',
-          title: 'First slide',
-          markdown: 'This is some **markdown**.\n\nThis is wonderful',
-          meta: {
-            location: 'garden',
-            information: {x: 13, y: 45}
-          }
-        },
-        'two': {
-          id: 'two',
-          title: 'Second slide',
-          markdown: '## Consideration\n\nBeware of what you wish for.',
-          meta: {
-            location: 'house',
-            information: {x: 15, y: -3},
-            camera: {
-              name: 'main',
-              angle: 0,
-              x: 45,
-              y: 89,
-              ratio: 1.898
-            }
-          }
+    const expectedSlides = [
+      {
+        id: 'one',
+        title: 'First slide',
+        markdown: 'This is some **markdown**.\n\nThis is wonderful',
+        meta: {
+          location: 'garden',
+          information: {x: 13, y: 45}
         }
       },
-      order: ['one', 'two']
-    };
+      {
+        id: 'two',
+        title: 'Second slide',
+        markdown: '## Consideration\n\nBeware of what you wish for.',
+        meta: {
+          location: 'house',
+          information: {x: 15, y: -3},
+          camera: {
+            name: 'main',
+            angle: 0,
+            x: 45,
+            y: 89,
+            ratio: 1.898
+          }
+        }
+      }
+    ];
 
-    const editorState = parser(text);
+    const slides = parser(text);
 
-    assert.deepEqual(editorState, expectedState);
+    assert.deepEqual(slides, expectedSlides);
   });
 });

@@ -10,9 +10,7 @@ const SPLITTER = /(?=#\s+.+\n-~-)/,
       END = /\n\n$/;
 
 export default function markdownParser(string) {
-  const order = [];
-
-  const slides = string
+  return string
     .split(SPLITTER)
     .map(text => {
       const lines = text.split('\n');
@@ -29,13 +27,10 @@ export default function markdownParser(string) {
       while (lines[0] !== '-~-') {
         const [, key, json] = lines[0].match(META);
 
-        if (key === 'id') {
+        if (key === 'id')
           id = JSON.parse(json);
-          order.push(id);
-        }
-        else {
+        else
           meta[key] = JSON.parse(json);
-        }
 
         lines.shift();
       }
@@ -49,13 +44,4 @@ export default function markdownParser(string) {
         meta
       };
     });
-
-  const slidesMap = {};
-
-  slides.forEach(slide => slidesMap[slide.id] = slide);
-
-  return {
-    slides: slidesMap,
-    order
-  };
 }

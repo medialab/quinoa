@@ -4,9 +4,8 @@
  *
  * Renderer taking a Quinoa editor state & returning a single markdown string.
  */
-export default function markdownRenderer(editorState) {
-  const slides = editorState.order
-    .map(id => editorState.slides[id])
+export default function markdownRenderer(slides) {
+ return slides
     .map(slide => {
       let string = '';
 
@@ -26,7 +25,6 @@ export default function markdownRenderer(editorState) {
       string += slide.markdown;
 
       return string;
-    });
-
-  return slides.join('\n\n');
+    })
+    .join('\n\n');
 }

@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "private": true,
   "description": "Experimental rich editor.",
-  "main": "./src",
+  "main": "./src/quinoa.js",
   "scripts": {
     "examples:manylines": "cd examples/manylines && npm run dev",
     "lint": "eslint src examples",

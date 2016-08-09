@@ -4,10 +4,14 @@
  *
  * Rendering the application.
  */
+import uuid from 'uuid';
 import React from 'react';
 import {render} from 'react-dom';
 import Application from './containers/Application';
-import Quinoa from '../../../src';
+import Quinoa from '../../../src/quinoa';
+
+// TODO: encapsulate in Quinoa
+import {createState} from '../../../src/state';
 
 let CurrentApplication = Application;
 
@@ -23,7 +27,28 @@ import '../style/manylines.scss';
 /**
  * Creating our editor.
  */
-const quinoa = new Quinoa();
+function createSlide(data) {
+  return {
+    id: uuid.v4(),
+    title: data.title || '',
+    markdown: data.markdown || '',
+    meta: {
+      camera: {
+        x: 0,
+        y: 0,
+        angle: 0,
+        ratio: 1
+      }
+    }
+  };
+}
+
+const DEFAULT_STATE = createState([createSlide({title: 'First slide'})]);
+
+const quinoa = new Quinoa({
+  defaultState: DEFAULT_STATE,
+  slideCreator: createSlide
+});
 window.quinoa = quinoa;
 
 /**

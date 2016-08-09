@@ -9,9 +9,8 @@ import {multiline} from '../helpers';
 
 describe('renderers/markdown', function() {
 
-  const state = {
-    slides: {
-      'one': {
+  const slides = [
+      {
         id: 'one',
         title: 'First slide',
         markdown: 'This is some **markdown**.\n\nThis is wonderful',
@@ -20,7 +19,7 @@ describe('renderers/markdown', function() {
           information: {x: 13, y: 45}
         }
       },
-      'two': {
+      {
         id: 'two',
         title: 'Second slide',
         markdown: '## Consideration\n\nBeware of what you wish for.',
@@ -36,11 +35,9 @@ describe('renderers/markdown', function() {
           }
         }
       }
-    },
-    order: ['one', 'two']
-  };
+    ];
 
-  const text = multiline`
+  const expectedText = multiline`
     # First slide
     -~-
     id: "one"
@@ -64,12 +61,12 @@ describe('renderers/markdown', function() {
   `;
 
   it('should correctly render basic slides.', function() {
-    const markdown = renderer(state);
+    const markdown = renderer(slides);
 
-    assert.strictEqual(markdown, text);
+    assert.strictEqual(markdown, expectedText);
   });
 
   it('parsing the renderer output should return the original state.', function() {
-    assert.deepEqual(state, parser(renderer(state)));
+    assert.deepEqual(slides, parser(renderer(slides)));
   });
 });

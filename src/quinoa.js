@@ -6,10 +6,12 @@
  * implement its own quinoa editor in any webpage.
  */
 import React from 'react';
-import {bindActionCreators, createStore} from 'redux';
+import uuid from 'uuid';
+import {bindActionCreators, combineReducers, createStore} from 'redux';
 import * as actions from './actions';
-import reducers from './reducers';
 import createComponent from './createComponent';
+import createEditorReducer from './reducers/createEditorReducer';
+import {createState, validateSlide} from './state';
 import markdownRenderer from './renderers/markdown';
 
 /**
@@ -21,15 +23,54 @@ import 'codemirror/mode/markdown/markdown';
 import 'codemirror/addon/display/placeholder';
 
 /**
+ * Defaults.
+ */
+function createDefaultSlide(data = {}) {
+  return {
+    id: uuid.v4(),
+    title: data.title || '',
+    markdown: data.markdown || '',
+    meta: {}
+  };
+}
+
+const DEFAULT_SLIDE = createDefaultSlide({title: 'My first slide'});
+
+const DEFAULTS = {
+  defaultState: createState([DEFAULT_SLIDE]),
+  slideCreator: createDefaultSlide
+};
+
+/**
  * Quinoa class.
  *
  * @constructor
+ * @params {object}   options              - Customizing options.
+ * @params {object}   options.defaultState - Default editor state.
+ * @params {function} options.slideCreator - Function used to create new slides.
  */
 export default class Quinoa {
-  constructor() {
+  constructor(options = {}) {
+
+    // Options
+    const createSlide = options.slideCreator || DEFAULTS.slideCreator;
+    this.createSlide = () => {
+      const slide = createSlide.apply(null, arguments);
+
+      if (!validateSlide(slide))
+        throw new Error('Quinoa.slideCreator: invalid slide.');
+
+      return slide;
+    };
+
+    this.defaultState = options.defaultState || DEFAULTS.defaultState;
 
     // Properties
-    this.store = createStore(reducers, {});
+    const reducers = combineReducers({
+      editor: createEditorReducer(this.createSlide)
+    });
+
+    this.store = createStore(reducers, this.defaultState);
     this.component = createComponent(this.store);
     this.actions = bindActionCreators(
       actions,
@@ -41,13 +82,6 @@ export default class Quinoa {
 
     // Handling hot reloading
     if (module.hot) {
-      module.hot.accept('./reducers', () => {
-        const nextReducers = require('./reducers').default;
-        this.store.replaceReducer(nextReducers);
-
-        this.fireHotUpdate();
-      });
-
       module.hot.accept('./createComponent', () => {
         const nextFn = require('./createComponent').default;
         this.component = nextFn(this.store);
