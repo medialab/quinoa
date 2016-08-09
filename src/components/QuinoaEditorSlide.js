@@ -43,7 +43,7 @@ const enhance = compose(
   draggable
 );
 
-export default enhance(function EditorSlide(props) {
+export default enhance(function QuinoaEditorSlide(props) {
   const {
     title,
     markdown,
@@ -63,17 +63,17 @@ export default enhance(function EditorSlide(props) {
 
   return connectDragPreview(connectDropTarget(
     <div
-      className={cls('editor-slide', {selected: isCurrent})}
+      className={cls('quinoa-slide', {selected: isCurrent})}
       style={{opacity}}
       onClick={onSelect}>
-      <div className="editor-slide-title">
+      <div className="quinoa-slide-title">
         <table>
           <tbody>
             <tr>
-              {connectDragSource(<td className="editor-slide-title-hashtag">#</td>)}
+              {connectDragSource(<td className="quinoa-slide-title-hashtag">#</td>)}
               <td>
                 <textarea
-                  className="editor-slide-title-input"
+                  className="quinoa-slide-title-input"
                   placeholder="Title of the slide..."
                   onChange={onTitleChange}
                   value={title} />

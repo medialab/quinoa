@@ -8,17 +8,17 @@
 import React, {Component} from 'react';
 import {DragDropContext} from 'react-dnd';
 import HTML5Backend from 'react-dnd-html5-backend';
-import EditorSlide from './EditorSlide';
+import QuinoaEditorSlide from './QuinoaEditorSlide';
 
 const context = DragDropContext(HTML5Backend);
 
-function EditorAddSlideButton({addSlide}) {
+function QuinoaEditorAddSlideButton({addSlide}) {
   return (
-    <button className="editor-macro-button" onClick={addSlide}>Add Slide</button>
+    <button className="quinoa-macro-button" onClick={addSlide}>Add Slide</button>
   );
 }
 
-export default context(class EditorLayout extends Component {
+export default context(class QuinoaEditorLayout extends Component {
   render() {
     const {
       current,
@@ -29,7 +29,7 @@ export default context(class EditorLayout extends Component {
     return (
       <div>
         {slides.map((slide, index) => (
-          <EditorSlide
+          <QuinoaEditorSlide
             index={index}
             key={slide.id}
             id={slide.id}
@@ -40,7 +40,7 @@ export default context(class EditorLayout extends Component {
             update={actions.updateSlide}
             move={actions.moveSlide} />
         ))}
-        <EditorAddSlideButton addSlide={actions.addSlide} />
+        <QuinoaEditorAddSlideButton addSlide={actions.addSlide} />
       </div>
     );
   }

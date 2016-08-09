@@ -1,0 +1,68 @@
+/**
+ * Quinoa Editor Stylesheet.
+ */
+#quinoa {
+  background: white;
+  position: absolute;
+  border: 1px solid black;
+  left: calc(65% + 25px);
+  padding: 15px;
+  width: calc(35% - 60px);
+  height: calc(100% - 70px);
+  z-index: 2;
+  font-family: 'Fira Mono', Monospace;
+  overflow-y: scroll;
+
+  & > div {
+    height: 100%;
+  }
+
+  & .quinoa-slide {
+    padding: 5px;
+    min-height: 50px;
+    margin-bottom: 10px;
+    border: 1px solid transparent;
+
+    &.selected {
+      border: 1px solid black;
+    }
+  }
+
+  & .quinoa-slide-title {
+    border-bottom: 1px solid black;
+    margin-bottom: 10px;
+
+    & table {
+      width: 100%;
+    }
+
+    & .quinoa-slide-title-hashtag {
+      cursor: move;
+    }
+
+    & .quinoa-slide-title-input {
+      border: none;
+      resize: none;
+      height: 1rem;
+      width: 100%;
+
+      &:focus {
+        outline: none;
+      }
+    }
+  }
+
+  & .quinoa-macro-button {
+    width: 100%;
+    margin-top: 10px;
+    background: none;
+    border: 1px solid black;
+    cursor: pointer;
+    padding: 5px;
+
+    &:active {
+      background: black;
+      color: white;
+    }
+  }
+}
