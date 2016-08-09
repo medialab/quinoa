@@ -10,7 +10,7 @@ import {bindActionCreators, combineReducers, createStore} from 'redux';
 import * as actions from './actions';
 import createComponent from './createComponent';
 import createEditorReducer from './reducers/createEditorReducer';
-import {createState, validateSlide} from './state';
+import {createState, slidesFromEditorState, validateSlide} from './state';
 import markdownRenderer from './renderers/markdown';
 
 /**
@@ -157,7 +157,7 @@ export default class Quinoa {
    * @return {string} - The editor's markdown.
    */
   getMarkdown() {
-    const editorState = this.getState().editor;
-    return markdownRenderer(editorState);
+    const slides = slidesFromEditorState(this.getState().editor);
+    return markdownRenderer(slides);
   }
 }

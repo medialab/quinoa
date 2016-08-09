@@ -23,6 +23,10 @@ export function createState(slides = []) {
   };
 }
 
+export function slidesFromEditorState(editorState) {
+  return editorState.order.map(id => editorState.slides[id]);
+}
+
 export function validateSlide(target) {
   return (
     typeof target === 'object' &&

@@ -9,6 +9,7 @@ import React from 'react';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import QuinoaEditorLayout from '../components/QuinoaEditorLayout';
+import {slidesFromEditorState} from '../state';
 import * as ACTIONS from '../actions';
 
 const mapStateToProps = state => {
@@ -18,7 +19,7 @@ const mapStateToProps = state => {
     store: {
       current: editor.current,
       currentSlide: editor.slides[editor.current],
-      slides: editor.order.map(id => editor.slides[id])
+      slides: slidesFromEditorState(editor)
     }
   };
 };
