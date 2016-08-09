@@ -27,7 +27,7 @@ export default context(class QuinoaEditorLayout extends Component {
     } = this.props;
 
     return (
-      <div>
+      <div className="quinoa-layout">
         {slides.map((slide, index) => (
           <QuinoaEditorSlide
             index={index}

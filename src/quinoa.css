@@ -1,0 +1,65 @@
+/**
+ * Quinoa Editor Stylesheet.
+ */
+
+/**
+ * Wrapping div
+ */
+#quinoa {
+  height: 100%;
+  overflow-y: scroll;
+}
+
+/**
+ * Slide
+ */
+#quinoa .quinoa-slide {
+  padding: 5px;
+  min-height: 50px;
+  margin-bottom: 10px;
+  border: 1px solid transparent;
+}
+
+#quinoa .quinoa-slide.selected {
+  border: 1px solid black;
+}
+
+/**
+ * Slide title
+ */
+#quinoa .quinoa-slide-title {
+  border-bottom: 1px solid black;
+  margin-bottom: 10px;
+}
+
+#quinoa .quinoa-slide-title .quinoa-slide-title-hashtag {
+  cursor: move;
+}
+
+#quinoa .quinoa-slide-title .quinoa-slide-title-input {
+  border: none;
+  resize: none;
+  height: 1rem;
+  width: 100%;
+}
+
+#quinoa .quinoa-slide-title .quinoa-slide-title-input:focus {
+  outline: none;
+}
+
+/**
+ * Macro button
+ */
+#quinoa .quinoa-macro-button {
+  width: 100%;
+  margin-top: 10px;
+  background: none;
+  border: 1px solid black;
+  cursor: pointer;
+  padding: 5px;
+}
+
+#quinoa .quinoa-macro-button:active {
+  background: black;
+  color: white;
+}

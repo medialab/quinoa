@@ -12,7 +12,7 @@ import Quinoa from '../../../src';
 import 'normalize.css';
 import 'codemirror/lib/codemirror.css';
 import '../style/codemirror-theme.css';
-import '../../../src/quinoa.scss';
+import '../../../src/quinoa.css';
 
 /**
  * Creating our editor.

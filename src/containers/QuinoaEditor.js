@@ -32,12 +32,10 @@ const mapDispatchToProps = dispatch => {
 function QuinoaEditor({actions, store}) {
   return (
     <div id="quinoa">
-        <div id="editor">
-          <QuinoaEditorLayout
-            current={store.current}
-            slides={store.slides}
-            actions={actions} />
-        </div>
+      <QuinoaEditorLayout
+        current={store.current}
+        slides={store.slides}
+        actions={actions} />
     </div>
   );
 }
