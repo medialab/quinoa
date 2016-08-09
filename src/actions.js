@@ -6,7 +6,9 @@ import {
   EDITOR_SELECT_SLIDE,
   EDITOR_ADD_SLIDE,
   EDITOR_UPDATE_SLIDE,
-  EDITOR_MOVE_SLIDE
+  EDITOR_MOVE_SLIDE,
+
+  RESOURCES_ADD_ITEM
 } from './constants';
 
 /**
@@ -35,4 +37,11 @@ export function updateSlide(id, data) {
  */
 export function moveSlide(id, indexBefore, indexAfter) {
   return {type: EDITOR_MOVE_SLIDE, id, indexBefore, indexAfter};
+}
+
+/**
+ * Adding an external resource.
+ */
+export function addResource(category, id, data) {
+  return {type: RESOURCES_ADD_ITEM, category, id, data};
 }

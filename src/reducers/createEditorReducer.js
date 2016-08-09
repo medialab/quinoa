@@ -19,11 +19,6 @@ const DEFAULT_STATE = {
 
 /**
  * Editor reducer forge.
- *
- * The editor state is an object composed of the following keys:
- *  - "current": id of the current slide.
- *  - "slides": an index of the slides by id.
- *  - "order": a list of slide ids keeping track of slides' order
  */
 export default function(createSlide) {
   return resolver(DEFAULT_STATE, {

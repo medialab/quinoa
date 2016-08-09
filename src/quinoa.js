@@ -10,6 +10,7 @@ import {bindActionCreators, combineReducers, createStore} from 'redux';
 import * as actions from './actions';
 import createComponent from './createComponent';
 import createEditorReducer from './reducers/createEditorReducer';
+import createResourcesReducer from './reducers/createResourcesReducer';
 import {createState, slidesFromEditorState, validateSlide} from './state';
 import markdownRenderer from './renderers/markdown';
 
@@ -66,7 +67,8 @@ export default class Quinoa {
 
     // Properties
     const reducers = combineReducers({
-      editor: createEditorReducer(this.createSlide)
+      editor: createEditorReducer(this.createSlide),
+      resources: createResourcesReducer()
     });
 
     this.store = createStore(reducers, this.defaultState);
