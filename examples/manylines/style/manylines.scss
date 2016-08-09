@@ -6,33 +6,37 @@
 /**
  * Layout.
  */
-html, body, #mount, #mount > div {
+html {
+  min-height: 100%;
+}
+
+html, body, #mount {
   height: 100%;
+  padding: 0;
+  margin: 0;
 }
 
 #wrapper {
-  position: relative;
+  width: calc(100% - 20px);
   height: calc(100% - 20px);
-  top: 0;
-  left: 0;
   padding: 10px;
   margin: 0;
+  font-family: 'Fira Mono', monospace;
 }
 
 /**
  * Graph.
  */
 #graph {
-  position: absolute;
   border: 1px solid black;
-  height: calc(100% - 40px);
-  width: 65%;
-  z-index: 1;
+  padding: 0;
+  height: 100%;
+  width: 70%;
 
   // Graph container
   & > div,
   & > div > #sigma-container, {
-    position: absolute;
+    position: relative;
     height: 100%;
     width: 100%;
 
@@ -54,4 +58,17 @@ html, body, #mount, #mount > div {
       margin-bottom: 5px;
     }
   }
+}
+
+/**
+ * Editor.
+ */
+#editor {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  border: 1px solid black;
+  padding: 10px;
+  width: calc(30% - 60px);
+  height: calc(100% - 40px);
 }

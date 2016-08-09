@@ -35,6 +35,9 @@ export default class Quinoa {
       this.store.dispatch
     );
 
+    // Binding the store's subscribe method
+    this.subscribe = this.store.subscribe.bind(this.store);
+
     // Handling hot reloading
     if (module.hot) {
       module.hot.accept('./reducers', () => {
@@ -85,6 +88,15 @@ export default class Quinoa {
    */
   getStore() {
     return this.store;
+  }
+
+  /**
+   * Shortcut to access the store's data.
+   *
+   * @return {Object} - The store's data.
+   */
+  getState() {
+    return this.store.getState();
   }
 
   /**
