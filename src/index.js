@@ -10,6 +10,7 @@ import {bindActionCreators, createStore} from 'redux';
 import * as actions from './actions';
 import reducers from './reducers';
 import createComponent from './createComponent';
+import markdownRenderer from './renderers/markdown';
 
 /**
  * CodeMirror extensions.
@@ -115,5 +116,15 @@ export default class Quinoa {
    */
   getComponent() {
     return this.component;
+  }
+
+  /**
+   * Method used to retrieve the editor's state as a markdown string.
+   *
+   * @return {string} - The editor's markdown.
+   */
+  getMarkdown() {
+    const editorState = this.getState().editor;
+    return markdownRenderer(editorState);
   }
 }
