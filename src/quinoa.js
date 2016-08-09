@@ -5,7 +5,6 @@
  * File in charge of exporting the editor's full API enabling anyone to
  * implement its own quinoa editor in any webpage.
  */
-import React from 'react';
 import uuid from 'uuid';
 import {bindActionCreators, combineReducers, createStore} from 'redux';
 import * as actions from './actions';

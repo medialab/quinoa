@@ -21,7 +21,7 @@ export default function Application(props) {
         <GraphLayout
           actions={actions}
           camera={camera}
-          current={current} />
+          current={current} />
       </div>
       <div id="editor">
         {React.createElement(editorComponent)}

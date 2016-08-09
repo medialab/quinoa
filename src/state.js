@@ -8,7 +8,7 @@
 export function createEditorState(slides = []) {
   const slidesMap = {};
 
-  slides.forEach(slide => slidesMap[slide.id] = slide);
+  slides.forEach(slide => (slidesMap[slide.id] = slide));
 
   return {
     current: slides[0].id,

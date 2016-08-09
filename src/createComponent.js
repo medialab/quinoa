@@ -4,20 +4,18 @@
  *
  * Function creating the React component rendering an arbitrary quinoa editor.
  */
-import React, {Component} from 'react';
+import React from 'react';
 import {Provider} from 'react-redux';
 import QuinoaEditor from './containers/QuinoaEditor';
 
 export default function createComponent(store) {
   let EditorComponent = QuinoaEditor;
 
-  return class WrappedQuinoaEditor extends Component {
-    render() {
-      return (
-        <Provider store={store}>
-          <EditorComponent />
-        </Provider>
-      );
-    }
-  }
+  return function() {
+    return (
+      <Provider store={store}>
+        <EditorComponent />
+      </Provider>
+    );
+  };
 }

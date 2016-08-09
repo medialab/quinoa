@@ -9,7 +9,7 @@ import React from 'react';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import QuinoaEditorLayout from '../components/QuinoaEditorLayout';
-import * as actions from '../actions';
+import * as ACTIONS from '../actions';
 
 const mapStateToProps = state => {
   const editor = state.editor;
@@ -25,7 +25,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    actions: bindActionCreators(actions, dispatch)
+    actions: bindActionCreators(ACTIONS, dispatch)
   };
 };
 
