@@ -5,6 +5,7 @@
  * Functions able to create & validate expected store's states from various
  * data inputs.
  */
+import {META_DELIMITER} from './constants';
 
 /**
  * Create an editor state object from slides & resources.
@@ -61,13 +62,13 @@ export function slidesToMarkdown(slides) {
       string += '# ' + slide.title + '\n';
 
       // Handling the metadata
-      string += '-~-\n';
+      string += META_DELIMITER + '\n';
       string += 'id: "' + slide.id + '"\n';
 
       for (const k in slide.meta)
         string += k + ': ' + JSON.stringify(slide.meta[k]) + '\n';
 
-      string += '-~-\n';
+      string += META_DELIMITER + '\n';
 
       // Handling the markdown text
       string += slide.markdown;

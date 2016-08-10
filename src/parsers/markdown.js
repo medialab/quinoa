@@ -4,6 +4,8 @@
  *
  * Parser creating an editor state from a markdown document.
  */
+import {META_DELIMITER} from '../constants';
+
 const SPLITTER = /(?=#\s+.+\n-~-)/,
       TITLE = /#\s+(.+)/,
       META = /([^:]+):\s+(.+)$/,
@@ -24,7 +26,7 @@ export default function markdownParser(string) {
       let id;
       lines.shift();
 
-      while (lines[0] !== '-~-') {
+      while (lines[0] !== META_DELIMITER) {
         const [, key, json] = lines[0].match(META);
 
         if (key === 'id')

@@ -4,6 +4,11 @@
  */
 
 /**
+ * Miscellaneous.
+ */
+export const META_DELIMITER = '-~-';
+
+/**
  * Action types.
  */
 export const EDITOR_SELECT_SLIDE = '§Editor/SelectSlide';
