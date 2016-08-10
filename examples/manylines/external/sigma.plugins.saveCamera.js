@@ -47,6 +47,10 @@
     var camera = this.cameras[name],
         coord = this.retrieveCamera(name, save);
 
-    camera.goTo(coord);
+    sigma.misc.animation.camera(
+      camera,
+      coord,
+      {duration: 300}
+    );
   };
 }).call(this);
