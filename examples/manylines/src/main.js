@@ -70,7 +70,7 @@ function renderApplication() {
   const group = (
     <CurrentApplication
       actions={quinoa.getActions()}
-      editorComponent={quinoa.getComponent()}
+      editorComponent={quinoa.getEditorComponent()}
       {...mapStore()} />
   );
 

@@ -8,7 +8,7 @@ import React from 'react';
 import {Provider} from 'react-redux';
 import QuinoaEditor from './containers/QuinoaEditor';
 
-export default function createComponent(store) {
+export function createEditorComponent(store) {
   let EditorComponent = QuinoaEditor;
 
   return function() {

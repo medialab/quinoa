@@ -8,7 +8,7 @@
 import uuid from 'uuid';
 import {bindActionCreators, combineReducers, createStore} from 'redux';
 import * as actions from './actions';
-import createComponent from './createComponent';
+import {createEditorComponent} from './createComponents';
 import createEditorReducer from './reducers/createEditorReducer';
 import createResourcesReducer from './reducers/createResourcesReducer';
 import {
@@ -76,7 +76,7 @@ export default class Quinoa {
     });
 
     this.store = createStore(reducers, this.defaultState);
-    this.component = createComponent(this.store);
+    this.editorComponent = createEditorComponent(this.store);
     this.actions = bindActionCreators(
       actions,
       this.store.dispatch
@@ -87,9 +87,9 @@ export default class Quinoa {
 
     // Handling hot reloading
     if (module.hot) {
-      module.hot.accept('./createComponent', () => {
-        const nextFn = require('./createComponent').default;
-        this.component = nextFn(this.store);
+      module.hot.accept('./createComponents', () => {
+        const nextFn = require('./createComponents').createEditorComponent;
+        this.editorComponent = nextFn(this.store);
 
         this.fireHotUpdate();
       });
@@ -149,12 +149,12 @@ export default class Quinoa {
   }
 
   /**
-   * Method used to return the attached React component.
+   * Method used to return the attached editor component
    *
-   * @return {QuinoaEditor} - The component.
+   * @return {Component} - The editor component.
    */
-  getComponent() {
-    return this.component;
+  getEditorComponent() {
+    return this.editorComponent;
   }
 
   /**
