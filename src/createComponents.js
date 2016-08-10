@@ -8,14 +8,16 @@ import React from 'react';
 import {Provider} from 'react-redux';
 import QuinoaEditor from './containers/QuinoaEditor';
 
-export function createEditorComponent(store) {
+export default function createComponents(store) {
   let EditorComponent = QuinoaEditor;
 
-  return function() {
-    return (
-      <Provider store={store}>
-        <EditorComponent />
-      </Provider>
-    );
+  return {
+    editor: function() {
+      return (
+        <Provider store={store}>
+          <EditorComponent />
+        </Provider>
+      );
+    }
   };
 }
