@@ -11,8 +11,12 @@ import * as actions from './actions';
 import createComponent from './createComponent';
 import createEditorReducer from './reducers/createEditorReducer';
 import createResourcesReducer from './reducers/createResourcesReducer';
-import {createState, slidesFromEditorState, validateSlide} from './state';
-import markdownRenderer from './renderers/markdown';
+import {
+  createState,
+  slidesFromEditorState,
+  slidesToMarkdown,
+  validateSlide
+} from './state';
 
 /**
  * CodeMirror extensions.
@@ -160,6 +164,6 @@ export default class Quinoa {
    */
   getMarkdown() {
     const slides = slidesFromEditorState(this.getState().editor);
-    return markdownRenderer(slides);
+    return slidesToMarkdown(slides);
   }
 }
