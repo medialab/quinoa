@@ -30,6 +30,13 @@ describe('parsers/markdown', function() {
     ## Consideration
 
     Beware of what you wish for.
+
+    #
+    -~-
+    id: "three"
+    location:
+    -~-
+    Some meaningful **text**.
   `;
 
   const expectedSlides = [
@@ -56,6 +63,14 @@ describe('parsers/markdown', function() {
           y: 89,
           ratio: 1.898
         }
+      }
+    },
+    {
+      id: 'three',
+      title: '',
+      markdown: 'Some meaningful **text**.',
+      meta: {
+        location: ''
       }
     }
   ];

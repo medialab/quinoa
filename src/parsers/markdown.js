@@ -6,9 +6,9 @@
  */
 import {META_DELIMITER} from '../constants';
 
-const SPLITTER = /(?=#\s+.+\n-~-)/,
-      TITLE = /#\s+(.+)/,
-      META = /([^:]+):\s+(.+)$/,
+const SPLITTER = /(?=#\s*.*\n-~-)/,
+      TITLE = /#\s*(.*)/,
+      META = /([^:]+):\s*(.*)$/,
       END = /\n\n$/;
 
 export default function markdownParser(string) {
@@ -32,7 +32,7 @@ export default function markdownParser(string) {
         if (key === 'id')
           id = JSON.parse(json);
         else
-          meta[key] = JSON.parse(json);
+          meta[key] = json ? JSON.parse(json) : '';
 
         lines.shift();
       }
