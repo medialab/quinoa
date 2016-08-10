@@ -15,21 +15,21 @@ describe('parsers/resources', function() {
       ],
       [
         '[[image: 234, {}]]',
-        [{category: 'image', id: '234', data: {}}]
+        [{category: 'image', identifier: '234', data: {}}]
       ],
       [
         '[[image: 43]]',
-        [{category: 'image', id: '43', data: {}}]
+        [{category: 'image', identifier: '43', data: {}}]
       ],
       [
         '[[image: 56, {"information": "hello"}]]',
-        [{category: 'image', id: '56', data: {information: 'hello'}}]
+        [{category: 'image', identifier: '56', data: {information: 'hello'}}]
       ],
       [
         'This is some text.\n This is a resource: [[image: 45, {"information": "hello"}]] and this is another: [[graph: 34]]',
         [
-          {category: 'image', id: '45', data: {information: 'hello'}},
-          {category: 'graph', id: '34', data: {}}
+          {category: 'image', identifier: '45', data: {information: 'hello'}},
+          {category: 'graph', identifier: '34', data: {}}
         ]
       ]
     ];

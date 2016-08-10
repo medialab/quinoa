@@ -42,6 +42,6 @@ export function moveSlide(id, indexBefore, indexAfter) {
 /**
  * Adding an external resource.
  */
-export function addResource(category, id, data) {
-  return {type: RESOURCES_ADD_ITEM, category, id, data};
+export function addResource(category, identifier, data) {
+  return {type: RESOURCES_ADD_ITEM, category, identifier, data};
 }

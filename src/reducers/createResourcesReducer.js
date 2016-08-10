@@ -20,13 +20,13 @@ export default function() {
     /**
      * An external resource was added.
      */
-    [RESOURCES_ADD_ITEM]: (state, {category, id, data}) => {
+    [RESOURCES_ADD_ITEM]: (state, {category, identifier, data}) => {
       const indexes = {...state.indexes};
 
       if (!(category in indexes))
         indexes[category] = {};
 
-      indexes[category][id] = data;
+      indexes[category][identifier] = data;
 
       return {indexes};
     }

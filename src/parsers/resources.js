@@ -13,7 +13,7 @@ export default function(string) {
   return findall(RESOURCES, string).map(match => {
     return {
       category: match[1],
-      id: match[2],
+      identifier: match[2],
       data: match[3] ? JSON.parse(match[3]) : {}
     };
   });
