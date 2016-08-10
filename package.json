@@ -2,7 +2,7 @@
   "name": "quinoa",
   "version": "0.0.1",
   "private": true,
-  "description": "Experimental rich editor.",
+  "description": "Experimental rich editor for dataviz narration.",
   "main": "./src/quinoa.js",
   "scripts": {
     "examples:manylines": "cd examples/manylines && npm run dev",
@@ -15,7 +15,8 @@
     "url": "git+https://github.com/medialab/quinoa.git"
   },
   "keywords": [
-    "editor"
+    "editor",
+    "dataviz"
   ],
   "contributors": [
     {
