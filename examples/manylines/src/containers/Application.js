@@ -11,17 +11,11 @@ import {connect} from 'react-redux';
 import * as ACTIONS from '../actions';
 
 const mapStateToProps = state => {
-  const graph = state.graph;
-
-  return {
-    current: graph.current
-  };
+  return {};
 };
 
 const mapDispatchToProps = dispatch => {
-  return {
-    actions: bindActionCreators(ACTIONS, dispatch)
-  };
+  return {};
 };
 
 function Application(props) {
@@ -30,11 +24,10 @@ function Application(props) {
       actions: quinoaActions,
       store: {
         camera,
-        current: currentSlide
+        currentGraph,
+        currentSlide
       }
     },
-    actions,
-    current,
     editorComponent
   } = props;
 
@@ -43,9 +36,8 @@ function Application(props) {
       <div id="graph">
         <GraphLayout
           quinoaActions={quinoaActions}
-          actions={actions}
           camera={camera}
-          currentGraph={current}
+          currentGraph={currentGraph}
           currentSlide={currentSlide} />
       </div>
       <div id="editor">

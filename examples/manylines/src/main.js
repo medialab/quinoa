@@ -70,9 +70,12 @@ const mountNode = document.getElementById('mount');
 function mapStore() {
   const {editor} = quinoa.getState();
 
+  const currentSlide = editor.slides[editor.current];
+
   return {
-    current: editor.current,
-    camera: editor.slides[editor.current].meta.camera
+    currentSlide: editor.current,
+    currentGraph: currentSlide.meta.graph,
+    camera: currentSlide.meta.camera
   };
 }
 

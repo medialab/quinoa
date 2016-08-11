@@ -56,7 +56,7 @@ export default class Graph extends Component {
 
     // Building the action
     this.updateSlide = () => {
-      this.props.updateSlide(this.props.current, {meta: {camera: sigInst.saveCamera('main')}});
+      this.props.updateSlide(this.props.currentSlide, {meta: {camera: sigInst.saveCamera('main')}});
     };
 
     this.updateSlide = debounce(this.updateSlide, 100);
@@ -83,20 +83,23 @@ export default class Graph extends Component {
 
   componentDidUpdate(prev) {
 
-    // If the slide has changed, we try to apply the saved camera
-    if (prev.current !== this.props.current)
-      sigInst.loadCamera('main', this.props.camera);
-
     // If the graph has changed, we reset sigma
     if (prev.data !== this.props.data) {
       sigInst.graph.clear();
       sigma.parsers.gexf(
         this.props.data,
         sigInst,
-        () => sigInst.refresh()
+        () => {
+          camera.goTo({x: 0, y: 0, angle: 0, ratio: 1});
+          sigInst.refresh();
+          sigInst.loadCamera('main', this.props.camera)
+        }
       );
-      camera.goTo({x: 0, y: 0, angle: 0, ratio: 1});
     }
+
+    // If the slide has changed, we try to apply the saved camera
+    else if (prev.currentSlide !== this.props.currentSlide)
+      sigInst.loadCamera('main', this.props.camera);
   }
 
   componentWillUnmount() {
@@ -117,7 +120,7 @@ export default class Graph extends Component {
     return (
       <div>
         <GraphControls camera={camera} />
-        <GraphSelector selected={currentGraph} onChange={e => selectGraph(e.target.value)} />
+        <GraphSelector selected={currentGraph} onChange={selectGraph} />
         <div id="sigma-container" ref={div => (this.container = div)} />
       </div>
     );

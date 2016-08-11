@@ -16,7 +16,6 @@ const fetcherReducer = string => {
 
 export default function GraphLayout(props) {
   const {
-    actions,
     quinoaActions,
     camera,
     currentGraph,
@@ -28,13 +27,27 @@ export default function GraphLayout(props) {
     dataType: 'xml'
   };
 
+  const updateGraph = e => {
+    quinoaActions.updateSlide(currentSlide, {
+      meta: {
+        graph: e.target.value,
+        camera: {
+          x: 0,
+          y: 0,
+          angle: 0,
+          ratio: 1
+        }
+      }
+    });
+  };
+
   return (
     <Fetcher params={params} reducer={fetcherReducer} >
       <Graph
         camera={camera}
         currentGraph={currentGraph}
         currentSlide={currentSlide}
-        selectGraph={actions.selectGraph}
+        selectGraph={updateGraph}
         updateSlide={quinoaActions.updateSlide} />
     </Fetcher>
   );
