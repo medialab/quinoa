@@ -9,11 +9,17 @@ import React from 'react';
 import {render} from 'react-dom';
 import Application from './containers/Application';
 import Quinoa from '../../../src/quinoa';
+import {createStore} from 'redux';
+import reducers from './reducers';
+import {Provider} from 'react-redux';
 
 // TODO: encapsulate in Quinoa
 import {createState} from '../../../src/state';
 
 let CurrentApplication = Application;
+
+const store = createStore(reducers);
+window.store = store;
 
 /**
  * Style.
@@ -33,6 +39,7 @@ function createSlide(data) {
     title: data.title || '',
     markdown: data.markdown || '',
     meta: {
+      graph: 'arctic',
       camera: {
         x: 0,
         y: 0,
@@ -71,10 +78,11 @@ function mapStore() {
 
 function renderApplication() {
   const group = (
-    <CurrentApplication
-      actions={quinoa.getActions()}
-      editorComponent={quinoa.getEditorComponent()}
-      {...mapStore()} />
+    <Provider store={store}>
+      <CurrentApplication
+        quinoa={{actions: quinoa.getActions(), store: mapStore()}}
+        editorComponent={quinoa.getEditorComponent()} />
+    </Provider>
   );
 
   render(group, mountNode);

@@ -6,11 +6,34 @@
  */
 import React from 'react';
 import GraphLayout from '../components/graph/GraphLayout';
+import {bindActionCreators} from 'redux';
+import {connect} from 'react-redux';
+import * as ACTIONS from '../actions';
 
-export default function Application(props) {
+const mapStateToProps = state => {
+  const graph = state.graph;
+
+  return {
+    current: graph.current
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    actions: bindActionCreators(ACTIONS, dispatch)
+  };
+};
+
+function Application(props) {
   const {
+    quinoa: {
+      actions: quinoaActions,
+      store: {
+        camera,
+        current: currentSlide
+      }
+    },
     actions,
-    camera,
     current,
     editorComponent
   } = props;
@@ -19,9 +42,11 @@ export default function Application(props) {
     <div id="wrapper">
       <div id="graph">
         <GraphLayout
+          quinoaActions={quinoaActions}
           actions={actions}
           camera={camera}
-          current={current} />
+          currentGraph={current}
+          currentSlide={currentSlide} />
       </div>
       <div id="editor">
         {React.createElement(editorComponent)}
@@ -29,3 +54,5 @@ export default function Application(props) {
     </div>
   );
 }
+
+export default connect(mapStateToProps, mapDispatchToProps)(Application);

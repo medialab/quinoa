@@ -9,11 +9,6 @@ import React from 'react';
 import Fetcher from '@yomguithereal/react-utilities/Fetcher';
 import Graph from './Graph';
 
-const fetcherParams = {
-  url: './resources/graph.gexf',
-  dataType: 'xml'
-};
-
 const fetcherReducer = string => {
   const parser = new DOMParser();
   return parser.parseFromString(string, 'application/xml');
@@ -22,16 +17,25 @@ const fetcherReducer = string => {
 export default function GraphLayout(props) {
   const {
     actions,
+    quinoaActions,
     camera,
-    current,
+    currentGraph,
+    currentSlide,
   } = props;
 
+  const params = {
+    url: `./resources/${currentGraph}.gexf`,
+    dataType: 'xml'
+  };
+
   return (
-    <Fetcher params={fetcherParams} reducer={fetcherReducer} >
+    <Fetcher params={params} reducer={fetcherReducer} >
       <Graph
         camera={camera}
-        current={current}
-        update={actions.updateSlide} />
+        currentGraph={currentGraph}
+        currentSlide={currentSlide}
+        selectGraph={actions.selectGraph}
+        updateSlide={quinoaActions.updateSlide} />
     </Fetcher>
   );
 }

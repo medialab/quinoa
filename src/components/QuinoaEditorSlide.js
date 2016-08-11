@@ -47,11 +47,6 @@ const enhance = compose(
 );
 
 export default enhance(class QuinoaEditorSlide extends Component {
-  componentDidUpdate() {
-    if (this.props.isCurrent)
-      this.title.focus();
-  }
-
   render() {
     const {
       title,

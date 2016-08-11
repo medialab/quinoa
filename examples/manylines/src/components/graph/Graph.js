@@ -6,6 +6,7 @@
  */
 import React, {Component} from 'react';
 import GraphControls from './GraphControls';
+import GraphSelector from './GraphSelector';
 import debounce from 'lodash/debounce';
 
 /**
@@ -55,7 +56,7 @@ export default class Graph extends Component {
 
     // Building the action
     this.updateSlide = () => {
-      this.props.update(this.props.current, {meta: {camera: sigInst.saveCamera('main')}});
+      this.props.updateSlide(this.props.current, {meta: {camera: sigInst.saveCamera('main')}});
     };
 
     this.updateSlide = debounce(this.updateSlide, 100);
@@ -85,6 +86,17 @@ export default class Graph extends Component {
     // If the slide has changed, we try to apply the saved camera
     if (prev.current !== this.props.current)
       sigInst.loadCamera('main', this.props.camera);
+
+    // If the graph has changed, we reset sigma
+    if (prev.data !== this.props.data) {
+      sigInst.graph.clear();
+      sigma.parsers.gexf(
+        this.props.data,
+        sigInst,
+        () => sigInst.refresh()
+      );
+      camera.goTo({x: 0, y: 0, angle: 0, ratio: 1});
+    }
   }
 
   componentWillUnmount() {
@@ -97,9 +109,15 @@ export default class Graph extends Component {
   }
 
   render() {
+    const {
+      currentGraph,
+      selectGraph
+    } = this.props;
+
     return (
       <div>
         <GraphControls camera={camera} />
+        <GraphSelector selected={currentGraph} onChange={e => selectGraph(e.target.value)} />
         <div id="sigma-container" ref={div => (this.container = div)} />
       </div>
     );
