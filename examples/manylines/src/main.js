@@ -43,7 +43,10 @@ function createSlide(data) {
   };
 }
 
-const DEFAULT_STATE = createState([createSlide({title: 'First slide'})]);
+const DEFAULT_STATE = createState([
+  createSlide({title: 'First slide'}),
+  createSlide({title: 'Second slide'})
+]);
 
 const quinoa = new Quinoa({
   defaultState: DEFAULT_STATE,

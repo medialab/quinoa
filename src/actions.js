@@ -4,6 +4,8 @@
  */
 import {
   EDITOR_SELECT_SLIDE,
+  EDITOR_SELECT_PREVIOUS_SLIDE,
+  EDITOR_SELECT_NEXT_SLIDE,
   EDITOR_ADD_SLIDE,
   EDITOR_UPDATE_SLIDE,
   EDITOR_MOVE_SLIDE,
@@ -12,10 +14,16 @@ import {
 } from './constants';
 
 /**
- * Selecting a new slide.
+ * Selecting a slide.
  */
 export function selectSlide(id) {
   return {type: EDITOR_SELECT_SLIDE, id};
+}
+export function selectPreviousSlide(id){
+  return {type: EDITOR_SELECT_PREVIOUS_SLIDE};
+}
+export function selectNextSlide() {
+  return {type: EDITOR_SELECT_NEXT_SLIDE};
 }
 
 /**

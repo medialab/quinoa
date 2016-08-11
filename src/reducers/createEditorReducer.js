@@ -6,6 +6,8 @@ import merge from 'lodash/merge';
 import {resolver} from '../helpers';
 import {
   EDITOR_SELECT_SLIDE,
+  EDITOR_SELECT_PREVIOUS_SLIDE,
+  EDITOR_SELECT_NEXT_SLIDE,
   EDITOR_ADD_SLIDE,
   EDITOR_UPDATE_SLIDE,
   EDITOR_MOVE_SLIDE
@@ -30,6 +32,24 @@ export default function(createSlide) {
       return {
         ...state,
         current: id
+      };
+    },
+
+    [EDITOR_SELECT_PREVIOUS_SLIDE]: (state) => {
+      const index = state.order.indexOf(state.current);
+
+      return {
+        ...state,
+        current: state.order[index - 1] || state.current
+      };
+    },
+
+    [EDITOR_SELECT_NEXT_SLIDE]: (state) => {
+      const index = state.order.indexOf(state.current);
+
+      return {
+        ...state,
+        current: state.order[index + 1] || state.current
       };
     },
 

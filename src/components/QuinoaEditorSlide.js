@@ -4,7 +4,7 @@
  *
  * Component responsible for a single slide's editor.
  */
-import React from 'react';
+import React, {Component} from 'react';
 import CodeMirror from 'react-codemirror';
 import withHandlers from 'recompose/withHandlers';
 import compose from 'recompose/compose';
@@ -18,7 +18,10 @@ const CODEMIRROR_OPTIONS = {
   mode: 'markdown',
   placeholder: 'Text...',
   viewportMargin: Infinity,
-  lineWrapping: true
+  lineWrapping: true,
+  extraKeys: {
+    Tab: false
+  }
 };
 
 /**
@@ -43,49 +46,105 @@ const enhance = compose(
   draggable
 );
 
-export default enhance(function QuinoaEditorSlide(props) {
-  const {
-    title,
-    markdown,
-    isCurrent,
+export default enhance(class QuinoaEditorSlide extends Component {
+  componentDidUpdate() {
+    if (this.props.isCurrent)
+      this.title.focus();
+  }
 
-    isDragging,
-    connectDragPreview,
-    connectDragSource,
-    connectDropTarget,
+  render() {
+    const {
+      title,
+      markdown,
+      isCurrent,
 
-    onTitleChange,
-    onMarkdownChange,
-    onSelect
-  } = props;
+      isDragging,
+      connectDragPreview,
+      connectDragSource,
+      connectDropTarget,
 
-  const opacity = isDragging ? 0 : 1;
+      onTitleChange,
+      onMarkdownChange,
+      onSelect,
 
-  return connectDragPreview(connectDropTarget(
-    <div
-      className={cls('quinoa-slide', {selected: isCurrent})}
-      style={{opacity}}
-      onClick={onSelect}>
-      <div className="quinoa-slide-title">
-        <table>
-          <tbody>
-            <tr>
-              {connectDragSource(<td className="quinoa-slide-title-hashtag">#</td>)}
-              <td>
-                <textarea
-                  className="quinoa-slide-title-input"
-                  placeholder="Title of the slide..."
-                  onChange={onTitleChange}
-                  value={title} />
-              </td>
-            </tr>
-          </tbody>
-        </table>
+      selectNext,
+      selectPrevious
+    } = this.props;
+
+    const opacity = isDragging ? 0 : 1;
+
+    // TODO: clean this up for purity
+    const editorOptions = {
+      ...CODEMIRROR_OPTIONS,
+      extraKeys: {
+        ...CODEMIRROR_OPTIONS.extraKeys,
+        Down: editor => {
+          const doc = editor.getDoc(),
+                cursor = doc.getCursor(),
+                lines = doc.lineCount();
+
+          if (cursor.line === lines - 1) {
+            this.props.selectNext();
+            return;
+          }
+
+          editor.execCommand('goLineDown');
+        },
+        Up: editor => {
+          const doc = editor.getDoc(),
+                cursor = doc.getCursor();
+
+          if (!cursor.line) {
+            this.title.focus();
+            return;
+          }
+
+          editor.execCommand('goLineUp');
+        }
+      }
+    };
+
+    const titleKeyDown = e => {
+      if (e.keyCode === 40) {
+        const editor = this.codemirror.getCodeMirror();
+
+        editor.focus();
+      }
+
+      else if (e.keyCode === 38) {
+        this.props.selectPrevious();
+      }
+    };
+
+    return connectDragPreview(connectDropTarget(
+      <div
+        className={cls('quinoa-slide', {selected: isCurrent})}
+        style={{opacity}}
+        onClick={onSelect}>
+        <div className="quinoa-slide-title">
+          <table>
+            <tbody>
+              <tr>
+                {connectDragSource(<td className="quinoa-slide-title-hashtag">#</td>)}
+                <td>
+                  <textarea
+                    ref={textarea => this.title = textarea}
+                    className="quinoa-slide-title-input"
+                    placeholder="Title of the slide..."
+                    onChange={onTitleChange}
+                    onKeyDown={titleKeyDown}
+                    value={title} />
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <CodeMirror
+          ref={codemirrorElement => this.codemirror = codemirrorElement}
+          value={markdown}
+          onChange={onMarkdownChange}
+          options={editorOptions} />
       </div>
-      <CodeMirror
-        value={markdown}
-        onChange={onMarkdownChange}
-        options={CODEMIRROR_OPTIONS} />
-    </div>
-  ));
+    ));
+  }
 });
