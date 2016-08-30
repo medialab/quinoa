@@ -7,6 +7,7 @@
  */
 import uuid from 'uuid';
 import {bindActionCreators, combineReducers, createStore} from 'redux';
+import {EditorState} from 'draft-js';
 import * as actions from './actions';
 import createComponents from './createComponents';
 import createEditorReducer from './reducers/createEditorReducer';
@@ -34,10 +35,13 @@ function createDefaultSlide(data = {}) {
     id: uuid.v4(),
     title: data.title || '',
     markdown: data.markdown || '',
+    draft: EditorState.createEmpty(),
     meta: {}
   };
 }
 
+// TODO: merge by composition
+// TODO: pass current slide to the function so we can create from it
 const DEFAULT_SLIDE = createDefaultSlide({title: 'My first slide'});
 
 const DEFAULTS = {
@@ -155,6 +159,15 @@ export default class Quinoa {
    */
   getEditorComponent() {
     return this.components.editor;
+  }
+
+  /**
+   * Method used to return the attached draft component.
+   *
+   * @return {Component} - The draft component.
+   */
+  getDraftComponentForSlide() {
+    return this.components.draft;
   }
 
   /**

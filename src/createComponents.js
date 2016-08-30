@@ -7,15 +7,21 @@
 import React from 'react';
 import {Provider} from 'react-redux';
 import QuinoaEditor from './containers/QuinoaEditor';
+import QuinoaDraft from './containers/QuinoaDraft';
 
 export default function createComponents(store) {
-  let EditorComponent = QuinoaEditor;
-
   return {
-    editor: function() {
+    editor() {
       return (
         <Provider store={store}>
-          <EditorComponent />
+          <QuinoaEditor />
+        </Provider>
+      );
+    },
+    draft() {
+      return (
+        <Provider store={store}>
+          <QuinoaDraft />
         </Provider>
       );
     }

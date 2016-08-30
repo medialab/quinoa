@@ -20,6 +20,7 @@ export default function GraphLayout(props) {
     camera,
     currentGraph,
     currentSlide,
+    draftComponent
   } = props;
 
   const params = {

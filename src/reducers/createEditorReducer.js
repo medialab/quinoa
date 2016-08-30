@@ -2,6 +2,7 @@
  * Quinoa Editor Reducer Creator
  * ==============================
  */
+import {EditorState, ContentState} from 'draft-js';
 import merge from 'lodash/merge';
 import {resolver} from '../helpers';
 import {
@@ -76,6 +77,20 @@ export default function(createSlide) {
      */
     [EDITOR_UPDATE_SLIDE]: (state, {id, data}) => {
       const currentSlide = state.slides[id];
+
+      // If data contains markdown & no draft, we update the draft
+      if ('markdown' in data && !('draft' in data)) {
+        const content = ContentState.createFromText(data.markdown);
+
+        data = merge({}, data, {draft: EditorState.createWithContent(content)});
+      }
+
+      // If data contains draft & no markdown, we update the markdown
+      else if ('draft' in data && !('markdown' in data)) {
+        const content = data.draft.getCurrentContent();
+
+        data = merge({}, data, {markdown: content.getPlainText()});
+      }
 
       // Merging current slide's data & payload's
       const updatedSlide = merge({}, currentSlide, data);

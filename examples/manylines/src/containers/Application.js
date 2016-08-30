@@ -28,7 +28,8 @@ function Application(props) {
         currentSlide
       }
     },
-    editorComponent
+    editorComponent,
+    draftComponent
   } = props;
 
   return (
@@ -39,6 +40,9 @@ function Application(props) {
           camera={camera}
           currentGraph={currentGraph}
           currentSlide={currentSlide} />
+        <div id="draft">
+          {React.createElement(draftComponent)}
+        </div>
       </div>
       <div id="editor">
         {React.createElement(editorComponent)}

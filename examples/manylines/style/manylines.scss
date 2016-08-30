@@ -34,7 +34,7 @@ html, body, #mount {
   width: 70%;
 
   // Graph container
-  & > div,
+  & > #graph-container,
   & > div > #sigma-container, {
     position: relative;
     height: 100%;
@@ -67,6 +67,19 @@ html, body, #mount {
       margin-bottom: 5px;
     }
   }
+}
+
+/**
+ * Draft.
+ */
+#draft {
+  position: absolute;
+  width: 30%;
+  height: 200px;
+  bottom: 10px;
+  margin: 10px;
+  border: 1px solid black;
+  background-color: white;
 }
 
 /**

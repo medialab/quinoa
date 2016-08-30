@@ -16,6 +16,9 @@ import {Provider} from 'react-redux';
 // TODO: encapsulate in Quinoa
 import {createState} from '../../../src/state';
 
+// TODO: this should move away to be encapsulated in quinoa
+import {EditorState} from 'draft-js';
+
 let CurrentApplication = Application;
 
 const store = createStore(reducers);
@@ -38,6 +41,7 @@ function createSlide(data) {
     id: uuid.v4(),
     title: data.title || '',
     markdown: data.markdown || '',
+    draft: EditorState.createEmpty(),
     meta: {
       graph: 'arctic',
       camera: {
@@ -84,7 +88,8 @@ function renderApplication() {
     <Provider store={store}>
       <CurrentApplication
         quinoa={{actions: quinoa.getActions(), store: mapStore()}}
-        editorComponent={quinoa.getEditorComponent()} />
+        editorComponent={quinoa.getEditorComponent()}
+        draftComponent={quinoa.getDraftComponentForSlide()} />
     </Provider>
   );
 

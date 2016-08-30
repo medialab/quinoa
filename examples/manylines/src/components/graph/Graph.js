@@ -118,7 +118,7 @@ export default class Graph extends Component {
     } = this.props;
 
     return (
-      <div>
+      <div id="graph-container">
         <GraphControls camera={camera} />
         <GraphSelector selected={currentGraph} onChange={selectGraph} />
         <div id="sigma-container" ref={div => (this.container = div)} />
