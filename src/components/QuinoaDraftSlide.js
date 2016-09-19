@@ -11,10 +11,10 @@ import QuinoaSlideTitle from './QuinoaSlideTitle';
 
 export default class QuinoaDraftSlide extends Component {
   handleKeyCommand(command) {
-    const newState = RichUtils.handleKeyCommand(this.props.draft, command);
+    const newState = RichUtils.handleKeyCommand(this.props.slide.draft, command);
 
     if (newState) {
-      this.props.update(this.props.id, {draft: newState});
+      this.props.update(this.props.slide.id, {draft: newState});
       return 'handled';
     }
 
@@ -23,9 +23,7 @@ export default class QuinoaDraftSlide extends Component {
 
   render() {
     const {
-      id,
       slide,
-      draft,
       update
     } = this.props;
 
@@ -33,11 +31,11 @@ export default class QuinoaDraftSlide extends Component {
     return (
       <div>
         <div className="quinoa-slide-title">
-          <QuinoaSlideTitle value={slide.title} onChange={e => update(id, {title: e.target.value})} />
+          <QuinoaSlideTitle value={slide.title} onChange={e => update(slide.id, {title: e.target.value})} />
         </div>
         <Editor
-          editorState={draft}
-          onChange={state => update(id, {draft: state})}
+          editorState={slide.draft}
+          onChange={state => update(slide.id, {draft: state})}
           handleKeyCommand={this.handleKeyCommand.bind(this)} />
       </div>
     );
