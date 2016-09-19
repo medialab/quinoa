@@ -9,7 +9,9 @@ import CodeMirror from 'react-codemirror';
 import withHandlers from 'recompose/withHandlers';
 import compose from 'recompose/compose';
 import cls from 'classnames';
+
 import draggable from './draggable';
+import QuinoaSlideTitle from './QuinoaSlideTitle';
 
 /**
  * CodeMirror options.
@@ -85,29 +87,17 @@ export default enhance(class QuinoaEditorSlide extends Component {
 
           editor.execCommand('goLineDown');
         },
-        Up: editor => {
-          const doc = editor.getDoc(),
-                cursor = doc.getCursor();
+        // Up: editor => {
+        //   const doc = editor.getDoc(),
+        //         cursor = doc.getCursor();
 
-          if (!cursor.line) {
-            this.title.focus();
-            return;
-          }
+        //   if (!cursor.line) {
+        //     this.title.focus();
+        //     return;
+        //   }
 
-          editor.execCommand('goLineUp');
-        }
-      }
-    };
-
-    const titleKeyDown = e => {
-      if (e.keyCode === 40) {
-        const editor = this.codemirror.getCodeMirror();
-
-        editor.focus();
-      }
-
-      else if (e.keyCode === 38) {
-        this.props.selectPrevious();
+        //   editor.execCommand('goLineUp');
+        // }
       }
     };
 
@@ -122,13 +112,7 @@ export default enhance(class QuinoaEditorSlide extends Component {
               <tr>
                 {connectDragSource(<td className="quinoa-slide-title-hashtag">#</td>)}
                 <td>
-                  <textarea
-                    ref={textarea => this.title = textarea}
-                    className="quinoa-slide-title-input"
-                    placeholder="Title of the slide..."
-                    onChange={onTitleChange}
-                    onKeyDown={titleKeyDown}
-                    value={title} />
+                  <QuinoaSlideTitle value={title} onChange={onTitleChange} />
                 </td>
               </tr>
             </tbody>

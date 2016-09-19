@@ -3,6 +3,11 @@
  */
 
 /**
+ * Editor style
+ * -------------
+ */
+
+/**
  * Wrapping div
  */
 .quinoa {
@@ -62,4 +67,21 @@
 .quinoa .quinoa-macro-button:active {
   background: black;
   color: white;
+}
+
+/**
+ * Draft style
+ * ------------
+ */
+.quinoa-draft .quinoa-slide-title {
+  border-bottom: 1px solid black;
+  margin-bottom: 10px;
+}
+
+.quinoa-draft .quinoa-slide-title .quinoa-slide-title-input {
+  border: none;
+  padding: 5px;
+  resize: none;
+  height: 1rem;
+  width: calc(100% - 10px);
 }

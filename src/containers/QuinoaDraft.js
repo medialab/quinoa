@@ -17,6 +17,7 @@ const mapStateToProps = state => {
 
   return {
     store: {
+      currentSlide: editor.slides[editor.current],
       slides: slidesFromEditorState(editor)
     }
   };
@@ -29,12 +30,14 @@ const mapDispatchToProps = dispatch => {
 };
 
 function QuinoaDraft({actions, store}) {
+  const currentSlide = store.currentSlide;
 
   return (
-    <div id="quinoa-draft">
+    <div className="quinoa-draft">
       <QuinoaDraftSlide
-        id={store.slides[0].id}
-        draft={store.slides[0].draft}
+        id={currentSlide.id}
+        slide={currentSlide}
+        draft={currentSlide.draft}
         update={actions.updateSlide} />
     </div>
   );
