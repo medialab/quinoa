@@ -5,7 +5,7 @@
 import assert from 'assert';
 import parser from '../../src/parsers/resources';
 
-describe('parsers/resources', function() {
+describe('parsers/resources', function() {
 
   it('should parse resources correctly.', function() {
     const tests = [

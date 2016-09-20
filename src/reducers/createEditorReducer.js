@@ -6,12 +6,7 @@ import merge from 'lodash/merge';
 import {resolver} from '../helpers';
 import {stateFromMarkdown} from 'draft-js-import-markdown';
 import {stateToMarkdown} from 'draft-js-export-markdown';
-import {
-  EditorState,
-  ContentState,
-  convertFromRaw,
-  convertToRaw
-} from 'draft-js';
+import {EditorState} from 'draft-js';
 import {
   EDITOR_SELECT_SLIDE,
   EDITOR_SELECT_PREVIOUS_SLIDE,

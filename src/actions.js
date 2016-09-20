@@ -19,7 +19,7 @@ import {
 export function selectSlide(id) {
   return {type: EDITOR_SELECT_SLIDE, id};
 }
-export function selectPreviousSlide(id){
+export function selectPreviousSlide() {
   return {type: EDITOR_SELECT_PREVIOUS_SLIDE};
 }
 export function selectNextSlide() {

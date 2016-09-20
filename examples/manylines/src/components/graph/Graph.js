@@ -92,7 +92,7 @@ export default class Graph extends Component {
         () => {
           camera.goTo({x: 0, y: 0, angle: 0, ratio: 1});
           sigInst.refresh();
-          sigInst.loadCamera('main', this.props.camera)
+          sigInst.loadCamera('main', this.props.camera);
         }
       );
     }

@@ -6,19 +6,8 @@
  */
 import React from 'react';
 import GraphLayout from '../components/graph/GraphLayout';
-import {bindActionCreators} from 'redux';
-import {connect} from 'react-redux';
-import * as ACTIONS from '../actions';
 
-const mapStateToProps = state => {
-  return {};
-};
-
-const mapDispatchToProps = dispatch => {
-  return {};
-};
-
-function Application(props) {
+export default function Application(props) {
   const {
     quinoa: {
       actions: quinoaActions,
@@ -50,5 +39,3 @@ function Application(props) {
     </div>
   );
 }
-
-export default connect(mapStateToProps, mapDispatchToProps)(Application);

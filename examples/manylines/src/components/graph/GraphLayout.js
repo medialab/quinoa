@@ -19,8 +19,7 @@ export default function GraphLayout(props) {
     quinoaActions,
     camera,
     currentGraph,
-    currentSlide,
-    draftComponent
+    currentSlide
   } = props;
 
   const params = {

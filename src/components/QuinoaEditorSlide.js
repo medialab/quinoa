@@ -62,10 +62,7 @@ export default enhance(class QuinoaEditorSlide extends Component {
 
       onTitleChange,
       onMarkdownChange,
-      onSelect,
-
-      selectNext,
-      selectPrevious
+      onSelect
     } = this.props;
 
     const opacity = isDragging ? 0 : 1;
@@ -119,7 +116,7 @@ export default enhance(class QuinoaEditorSlide extends Component {
           </table>
         </div>
         <CodeMirror
-          ref={codemirrorElement => this.codemirror = codemirrorElement}
+          ref={codemirrorElement => (this.codemirror = codemirrorElement)}
           value={markdown}
           onChange={onMarkdownChange}
           options={editorOptions} />
