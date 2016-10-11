@@ -3,14 +3,13 @@
   "version": "0.0.1",
   "private": true,
   "description": "Experimental rich editor for dataviz narration.",
-  "main": "./build/quinoa.js",
+  "main": "./dist/quinoa.js",
   "scripts": {
     "test": "mocha --compilers js:babel-core/register -R spec --recursive ./test",
     "check": "npm test && npm run lint",
-    "dist": "babel src --out-dir ./",
+    "dist": "babel src --out-dir dist",
     "lint": "eslint src test",
-    "prepublish": "npm run dist",
-    "build": "babel src --out-dir dist"
+    "prepublish": "npm run dist"
   },
   "repository": {
     "type": "git",
