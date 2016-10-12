@@ -9,6 +9,7 @@
     "check": "npm test && npm run lint",
     "dist": "babel src --out-dir dist",
     "lint": "eslint src test",
+    "postinstall": "npm run dist",
     "prepublish": "npm run dist"
   },
   "repository": {
