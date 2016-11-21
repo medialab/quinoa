@@ -7,6 +7,7 @@ import {
   EDITOR_SELECT_PREVIOUS_SLIDE,
   EDITOR_SELECT_NEXT_SLIDE,
   EDITOR_ADD_SLIDE,
+  EDITOR_REMOVE_SLIDE,
   EDITOR_UPDATE_SLIDE,
   EDITOR_MOVE_SLIDE,
 
@@ -31,6 +32,13 @@ export function selectNextSlide() {
  */
 export function addSlide(data) {
   return {type: EDITOR_ADD_SLIDE, data};
+}
+
+/**
+ * Removing a slide.
+ */
+export function removeSlide(id) {
+  return {type: EDITOR_REMOVE_SLIDE, id};
 }
 
 /**

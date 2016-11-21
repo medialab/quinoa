@@ -43,6 +43,9 @@ const enhance = compose(
     onSelect: props => () => {
       if (!props.isCurrent)
         props.select(props.id);
+    },
+    onRemove: props => () => {
+      props.remove(props.id);
     }
   }),
   draggable
@@ -62,7 +65,8 @@ export default enhance(class QuinoaEditorSlide extends Component {
 
       onTitleChange,
       onMarkdownChange,
-      onSelect
+      onSelect,
+      onRemove
     } = this.props;
 
     const opacity = isDragging ? 0 : 1;
@@ -110,6 +114,9 @@ export default enhance(class QuinoaEditorSlide extends Component {
                 {connectDragSource(<td className="quinoa-slide-title-hashtag">#</td>)}
                 <td>
                   <QuinoaSlideTitle value={title} onChange={onTitleChange} />
+                </td>
+                <td onClick={onRemove}>
+                  x
                 </td>
               </tr>
             </tbody>

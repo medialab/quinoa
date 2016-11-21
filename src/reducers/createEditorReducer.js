@@ -12,6 +12,7 @@ import {
   EDITOR_SELECT_PREVIOUS_SLIDE,
   EDITOR_SELECT_NEXT_SLIDE,
   EDITOR_ADD_SLIDE,
+  EDITOR_REMOVE_SLIDE,
   EDITOR_UPDATE_SLIDE,
   EDITOR_MOVE_SLIDE
 } from '../constants';
@@ -70,6 +71,34 @@ export default function(createSlide) {
         slides: {
           ...state.slides,
           [slide.id]: slide
+        }
+      };
+    },
+
+    /**
+     * A slide was removed.
+     */
+    [EDITOR_REMOVE_SLIDE]: (state, {id}) => {
+      let slideIndex;
+      state.order.some((otherId, index) => {
+        if (otherId === id) {
+          slideIndex = index;
+          return true;
+        }
+        return false;
+      });
+      // (precaution) in future scenarios, slideIndex could be undefined if we'd remove slides which somehow are not displayed in the story while present in the slides dict
+      const newSlidesOrder = slideIndex ?
+                        [...state.order.slice(0, slideIndex), ...state.order.slice(slideIndex + 1)]
+                        : state.order;
+
+      // Updating state
+      return {
+        ...state,
+        order: newSlidesOrder,
+        slides: {
+          ...state.slides,
+          [id]: undefined
         }
       };
     },

@@ -37,6 +37,7 @@ export default context(class QuinoaEditorLayout extends Component {
             markdown={slide.markdown}
             isCurrent={slide.id === current}
             select={actions.selectSlide}
+            remove={actions.removeSlide}
             selectPrevious={actions.selectPreviousSlide}
             selectNext={actions.selectNextSlide}
             update={actions.updateSlide}
