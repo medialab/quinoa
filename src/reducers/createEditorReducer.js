@@ -87,13 +87,14 @@ export default function(createSlide) {
         }
         return false;
       });
+      // choose new current slide if the current slide was deleted
       let newCurrentSlideId;
-      if (slideIndex !== undefined) {
+      if (state.current === id && slideIndex !== undefined && state.order.length > 1) {
         if (slideIndex > 0) {
-          newCurrentSlideId = slideIndex - 1;
+          newCurrentSlideId = state.order[slideIndex - 1];
         }
         else {
-          newCurrentSlideId = 0;
+          newCurrentSlideId = state.order[slideIndex + 1];
         }
       }
       else {
