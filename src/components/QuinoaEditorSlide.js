@@ -102,6 +102,11 @@ export default enhance(class QuinoaEditorSlide extends Component {
       }
     };
 
+    const onClickOnRemove = (e) => {
+      e.stopPropagation();
+      onRemove();
+    };
+
     return connectDragPreview(connectDropTarget(
       <div
         className={cls('quinoa-slide', {selected: isCurrent})}
@@ -115,7 +120,7 @@ export default enhance(class QuinoaEditorSlide extends Component {
                 <td>
                   <QuinoaSlideTitle value={title} onChange={onTitleChange} />
                 </td>
-                <td onClick={onRemove}>
+                <td onClick={onClickOnRemove}>
                   x
                 </td>
               </tr>

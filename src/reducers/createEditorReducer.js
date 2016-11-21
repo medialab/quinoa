@@ -87,6 +87,18 @@ export default function(createSlide) {
         }
         return false;
       });
+      let newCurrentSlideId;
+      if (slideIndex !== undefined) {
+        if (slideIndex > 0) {
+          newCurrentSlideId = slideIndex - 1;
+        }
+        else {
+          newCurrentSlideId = 0;
+        }
+      }
+      else {
+        newCurrentSlideId = state.current;
+      }
       // (precaution) in future scenarios, slideIndex could be undefined if we'd remove slides which somehow are not displayed in the story while present in the slides dict
       const newSlidesOrder = slideIndex ?
                         [...state.order.slice(0, slideIndex), ...state.order.slice(slideIndex + 1)]
@@ -95,6 +107,7 @@ export default function(createSlide) {
       // Updating state
       return {
         ...state,
+        current: newCurrentSlideId,
         order: newSlidesOrder,
         slides: {
           ...state.slides,
