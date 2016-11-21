@@ -105,15 +105,17 @@ export default function(createSlide) {
                         : state.order;
 
       // Updating state
-      return {
+      const newState = {
         ...state,
         current: newCurrentSlideId,
         order: newSlidesOrder,
         slides: {
-          ...state.slides,
-          [id]: undefined
+          ...state.slides
         }
       };
+      // remove key from slides dict
+      delete newState.slides[id];
+      return newState;
     },
 
     /**
