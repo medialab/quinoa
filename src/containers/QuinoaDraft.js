@@ -34,9 +34,11 @@ function QuinoaDraft({actions, store}) {
 
   return (
     <div className="quinoa-draft">
-      <QuinoaDraftSlide
+      {currentSlide ? 
+        <QuinoaDraftSlide
         slide={currentSlide}
         update={actions.updateSlide} />
+        : ''}
     </div>
   );
 }
