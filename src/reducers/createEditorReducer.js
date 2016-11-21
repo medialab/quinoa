@@ -88,7 +88,7 @@ export default function(createSlide) {
         return false;
       });
       // choose new current slide if the current slide was deleted
-      let newCurrentSlideId;
+      let newCurrentSlideId = state.current;
       if (state.current === id && slideIndex !== undefined && state.order.length > 1) {
         if (slideIndex > 0) {
           newCurrentSlideId = state.order[slideIndex - 1];
@@ -97,13 +97,16 @@ export default function(createSlide) {
           newCurrentSlideId = state.order[slideIndex + 1];
         }
       }
-      else {
-        newCurrentSlideId = state.current;
-      }
       // (precaution) in future scenarios, slideIndex could be undefined if we'd remove slides which somehow are not displayed in the story while present in the slides dict
-      const newSlidesOrder = slideIndex ?
-                        [...state.order.slice(0, slideIndex), ...state.order.slice(slideIndex + 1)]
-                        : state.order;
+      let newSlidesOrder = state.order;
+      if (slideIndex !== undefined) {
+        if (slideIndex > 0) {
+          newSlidesOrder = [...state.order.slice(0, slideIndex), ...state.order.slice(slideIndex + 1)];
+        }
+        else if (state.order.length > 1) {
+          newSlidesOrder = state.order.slice(1);
+        }
+      }
 
       // Updating state
       const newState = {
