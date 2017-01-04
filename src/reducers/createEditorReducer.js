@@ -12,6 +12,7 @@ import {
   EDITOR_SELECT_PREVIOUS_SLIDE,
   EDITOR_SELECT_NEXT_SLIDE,
   EDITOR_ADD_SLIDE,
+  EDITOR_REMOVE_SLIDE,
   EDITOR_UPDATE_SLIDE,
   EDITOR_MOVE_SLIDE
 } from '../constants';
@@ -72,6 +73,55 @@ export default function(createSlide) {
           [slide.id]: slide
         }
       };
+    },
+
+    /**
+     * A slide was removed.
+     */
+    [EDITOR_REMOVE_SLIDE]: (state, {id}) => {
+      let slideIndex;
+      state.order.some((otherId, index) => {
+        if (otherId === id) {
+          slideIndex = index;
+          return true;
+        }
+        return false;
+      });
+      // choose new current slide if the current slide was deleted
+      let newCurrentSlideId = state.current;
+      if (state.current === id && slideIndex !== undefined) {
+        if (slideIndex > 0 && state.order.length > 1) {
+          newCurrentSlideId = state.order[slideIndex - 1];
+        }
+        else if (state.order.length > 1) {
+          newCurrentSlideId = state.order[slideIndex + 1];
+        }
+        else newCurrentSlideId = undefined;
+      }
+      // (precaution) in future scenarios, slideIndex could be undefined if we'd remove slides which somehow are not displayed in the story while present in the slides dict
+      let newSlidesOrder = state.order;
+      if (slideIndex !== undefined) {
+        if (slideIndex > 0) {
+          newSlidesOrder = [...state.order.slice(0, slideIndex), ...state.order.slice(slideIndex + 1)];
+        }
+        else if (state.order.length > 1) {
+          newSlidesOrder = state.order.slice(1);
+        }
+        else newSlidesOrder = [];
+      }
+
+      // Updating state
+      const newState = {
+        ...state,
+        current: newCurrentSlideId,
+        order: newSlidesOrder,
+        slides: {
+          ...state.slides
+        }
+      };
+      // remove key from slides dict
+      delete newState.slides[id];
+      return newState;
     },
 
     /**

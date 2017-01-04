@@ -28,6 +28,18 @@ import 'codemirror/mode/markdown/markdown';
 import 'codemirror/addon/display/placeholder';
 
 /**
+ * Quinoa logic utils exposition.
+ */
+export const quinoaActions = actions;
+export const quinoaCreateComponents = createComponents;
+export const quinoaCreateEditorReducer = createEditorReducer;
+export const quinoaCreateResourcesReducer = createResourcesReducer;
+export const quinoaCreateState = createState;
+export const quinoaSlidesFromEditorState = slidesFromEditorState;
+export const quinoaSlidesToMarkdown = slidesToMarkdown;
+export const quinoaValidateSlide = validateSlide;
+
+/**
  * Defaults.
  */
 function createDefaultSlide(data = {}) {

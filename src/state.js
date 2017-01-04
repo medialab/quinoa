@@ -19,7 +19,7 @@ export function createEditorState(slides = []) {
   slides.forEach(slide => (slidesMap[slide.id] = slide));
 
   return {
-    current: slides[0].id,
+    current: slides.length > 0 ? slides[0].id : undefined,
     slides: slidesMap,
     order: slides.map(slide => slide.id)
   };
